@@ -30,13 +30,13 @@ const Footer = () => {
         <div className={styles.footerContact}>
           <h3>Contact Us</h3>
           <div className="flex-col flex">
-            <a href="https://www.linkedin.com/company/bemkmfasilkomunsri/posts/?feedView=all">Linkedin: @bemkmilkomunsri</a>
+            <a href="https://www.linkedin.com/company/bemkmfasilkomunsri/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Linkedin: @bemkmilkomunsri</a>
             <a href="">Email: bemfasilkomunsri@gmail.com</a>
-            <a href="https://www.instagram.com/bemilkomunsri">
+            <a href="https://www.instagram.com/bemilkomunsri" target="_blank" rel="noopener noreferrer">
               Instagram: @bemilkomunsri
             </a>
-            <a href="https://x.com/bemilkomunsri">X: @bemilkomunsri</a>
-            <a href="https://www.facebook.com/bemilkomunsri?_rdc=2&_rdr#">Facebook: bemilkomunsri</a>
+            <a href="https://x.com/bemilkomunsri" target="_blank" rel="noopener noreferrer">X: @bemilkomunsri</a>
+            <a href="https://www.facebook.com/bemilkomunsri?_rdc=2&_rdr#" target="_blank" rel="noopener noreferrer">Facebook: bemilkomunsri</a>
           </div>
         </div>
       </div>

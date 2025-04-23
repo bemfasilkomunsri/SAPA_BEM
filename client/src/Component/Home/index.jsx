@@ -44,8 +44,8 @@ const Home = () => {
               Bersama GASPOL
             </h1>
             <p className=" max-w-[36rem] md:text-base text-sm mt-8">
-              Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa
-              arah—laporkan melalui GASPOL, sebuah forum resmi yang memastikan
+              Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa-
+              arah laporkan melalui GASPOL, sebuah forum resmi yang memastikan
               setiap masukan didengar dan ditindaklanjuti demi terciptanya
               lingkungan yang lebih baik bagi Fasilkom UNSRI.
             </p>
@@ -53,7 +53,7 @@ const Home = () => {
               to="laporan"
               smooth={true}
               duration={500}
-              className="inline-block mt-4 rounded-sm  cursor-pointer  border-angular duration-300 ease-in-out  px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black  "
+              className="inline-block mt-4 rounded-sm  cursor-pointer  border-angular duration-300 ease-in-out  px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black"
             >
               Laporkan!
             </Link>{" "}

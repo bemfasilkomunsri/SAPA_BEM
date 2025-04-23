@@ -6,7 +6,7 @@ const categories = [
   { id: 1, title: "Kinerja Dosen", link: "/laporan-kinerja-dosen" },
   { id: 4, title: "Kebijakan Kampus", link: "/laporan-kebijakan-kampus" },
   { id: 2, title: "Kerusakan Fasilitas", link: "/laporan-kerusakan-fasilitas" },
-  { id: 5, title: "Lapor", link: "/laporan" },
+  { id: 5, title: "Aspirasi Ormawa", link: "/laporan-ormawa" },
   { id: 3, title: "Pengajuan Seminar", link: "/laporan-pengajuan-seminar" },
 ];
 

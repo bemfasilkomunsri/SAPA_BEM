@@ -12,7 +12,9 @@ const KinerjaDosenList = () => {
 
   const getLaporan = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/kinerja_dosen');
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/kinerja_dosen`
+      );
       setLaporan(res.data);
     } catch (err) {
       console.error('Gagal memuat data', err);
@@ -22,7 +24,9 @@ const KinerjaDosenList = () => {
   const handleDelete = async (id) => {
     if (confirm('Yakin ingin menghapus laporan ini?')) {
       try {
-        await axios.delete(`http://localhost:5000/kinerja_dosen/${id}`);
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/kinerja_dosen/${id}`
+        );
         getLaporan(); // Refresh data setelah hapus
       } catch (err) {
         console.error('Gagal menghapus', err);

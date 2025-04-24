@@ -9,7 +9,8 @@ import LaporanKebijakanKampusPage from "./Pages/LaporanKebijakanKampusPage";
 import AdminPage from "./Pages/AdminPage";
 import LaporanPage from "./Pages/LaporanPage";
 import LaporanOrmawaPage from "./Pages/LaporanOrmawaPage";
-import AdminKinerjaDosenPage from "./Pages/AdminKinerjaDosenPage";
+import AdminKinerjaDosen from "./Pages/AdminKinerjaDosen";
+import AdminKebijakanKampus from "./Pages/AdminKebijakanKampus";
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
         <Route path="/laporan-ormawa" element={<LaporanOrmawaPage />} />
         <Route path="/laporan" element={<LaporanPage />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/admin/kinerja-dosen" element={<AdminKinerjaDosenPage />} />
+        <Route path="/admin/kinerja-dosen" element={<AdminKinerjaDosen />} />
+        <Route path="/admin/kebijakan-kampus" element={<AdminKebijakanKampus />} />
       </Routes>
     </Router>
   );

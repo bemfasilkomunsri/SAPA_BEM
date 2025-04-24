@@ -68,10 +68,11 @@ function LaporanKinerjaDosen() {
         style={{
           maxWidth: "500px",
           margin: "0 auto",
-          border: "1px solid #aaa",
           padding: "30px",
           borderRadius: "6px",
           textAlign: "left",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
+          backgroundColor: "#fff", 
         }}
       >
         {[
@@ -122,18 +123,7 @@ function LaporanKinerjaDosen() {
           ></textarea>
         </div>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            border: "1px solid #000",
-            background: "white",
-            cursor: "pointer",
-            fontWeight: "500",
-            fontSize: "14px",
-          }}
-        >
+        <button className="custom-button" type="submit">
           Kirim Aspirasi
         </button>
       </form>

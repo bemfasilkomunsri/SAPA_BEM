@@ -50,12 +50,12 @@ const Home = () => {
               lingkungan yang lebih baik bagi Fasilkom UNSRI.
             </p>
             <Link
-              to="laporan"
+              to="about"
               smooth={true}
               duration={500}
               className="inline-block mt-4 rounded-sm  cursor-pointer  border-angular duration-300 ease-in-out  px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-black"
             >
-              Laporkan!
+              Read More!
             </Link>{" "}
           </div>
           <div

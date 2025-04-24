@@ -59,10 +59,10 @@ const Admin = () => {
           link="/admin/kinerja-dosen"
         />
         <Card
-          title="Aspirasi Ormawa"
+          title="Pengajuan Seminar"
           count={data.ormawa}
           color="bg-green-600"
-          link="/admin/aspirasi-ormawa"
+          link="/admin/pengajuan-seminar"
         />
         <Card
           title="Kerusakan Fasilitas"
@@ -80,7 +80,7 @@ const Admin = () => {
           title="Ormawa"
           count={data.kebijakan}
           color="bg-gray-500"
-          link="/admin/oramawa"
+          link="/admin/ormawa"
         />
       </div>
     </div>

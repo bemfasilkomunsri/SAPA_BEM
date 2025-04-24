@@ -1,3 +1,20 @@
 body {
     padding-top: 90px; /* tambahkan padding atas sebesar 72 piksel */
 }
+
+.custom-button {
+    width: 100%;
+    padding: 10px;
+    background: #4A0000;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #FFEBBC;
+    color: #ccc6c6;
+}

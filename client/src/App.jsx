@@ -11,6 +11,7 @@ import LaporanPage from "./Pages/LaporanPage";
 import LaporanOrmawaPage from "./Pages/LaporanOrmawaPage";
 import AdminKinerjaDosen from "./Pages/AdminKinerjaDosen";
 import AdminKebijakanKampus from "./Pages/AdminKebijakanKampus";
+import AdminOrmawa from "./Pages/AdminOrmawa";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/kinerja-dosen" element={<AdminKinerjaDosen />} />
         <Route path="/admin/kebijakan-kampus" element={<AdminKebijakanKampus />} />
+        <Route path="/admin/ormawa" element={<AdminOrmawa />} />
       </Routes>
     </Router>
   );

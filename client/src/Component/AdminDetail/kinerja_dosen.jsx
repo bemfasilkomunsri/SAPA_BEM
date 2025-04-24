@@ -40,8 +40,8 @@ const KinerjaDosenList = () => {
       <table className="min-w-full border bg-white shadow rounded">
         <thead>
           <tr className="bg-gray-200 text-left">
-            <th className="p-2 border">#</th>
-            <th className="p-2 border">Nama</th>
+            <th className="p-2 border">No</th>
+            <th className="p-2 border">Nama Dosen</th>
             <th className="p-2 border">Isi Laporan</th>
             <th className="p-2 border">Tanggal</th>
             <th className="p-2 border">Aksi</th>
@@ -51,9 +51,9 @@ const KinerjaDosenList = () => {
           {laporan.map((item, index) => (
             <tr key={item.id}>
               <td className="p-2 border">{index + 1}</td>
-              <td className="p-2 border">{item.nama}</td>
-              <td className="p-2 border">{item.laporan}</td>
-              <td className="p-2 border">{item.tanggal}</td>
+              <td className="p-2 border">{item.Target_Aspirasi}</td>
+              <td className="p-2 border">{item.Isi_Aspirasi}</td>
+              <td className="p-2 border">{item.tanggal || "-"}</td>
               <td className="p-2 border flex gap-2">
                 <button
                   onClick={() => navigate(`/admin/kinerja-dosen/${item.id}`)}

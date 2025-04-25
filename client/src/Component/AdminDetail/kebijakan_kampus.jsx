@@ -54,9 +54,9 @@ const KebijakanKampusList = () => {
                   <td className="p-2 border">{item.nama_kebijakan}</td>
                   <td className="p-2 border">{item.isi_aspirasi}</td>
                   <td className="p-2 border">
-                    {item.berkas ? (
+                    {item.data_pendukung ? (
                     <a
-                      href={`${import.meta.env.VITE_API_URL}/${item.berkas}`}
+                      href={`${import.meta.env.VITE_API_URL}/${item.data_pendukung}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 underline"

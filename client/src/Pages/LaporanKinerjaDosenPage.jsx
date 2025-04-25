@@ -1,6 +1,7 @@
 import React from "react";
 import LaporanKinerjaDosen from "../Component/LaporanKinerjaDosen";
 import NavbarPages from "../Component/NavbarPages"
+import Footer from "../Component/Footer";
 
 const LaporanKinerjaDosenPage = () => {
   return (
@@ -8,6 +9,7 @@ const LaporanKinerjaDosenPage = () => {
       <div className="w-full">
         <NavbarPages/>
         <LaporanKinerjaDosen />
+        <Footer />
       </div>
     </main>
   );

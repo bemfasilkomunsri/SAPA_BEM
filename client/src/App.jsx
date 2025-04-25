@@ -13,6 +13,7 @@ import AdminKinerjaDosen from "./Pages/AdminKinerjaDosen";
 import AdminKebijakanKampus from "./Pages/AdminKebijakanKampus";
 import AdminOrmawa from "./Pages/AdminOrmawa";
 import AdminKerusakanFasilitas from "./Pages/AdminKerusakanFasilitas";
+import AdminPengajuanSeminar from "./Pages/AdminPengajuanSeminar"
 import Login from "../src/Component/Login";
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/admin/kebijakan-kampus" element={<AdminKebijakanKampus />} />
         <Route path="/admin/kerusakan-fasilitas" element={<AdminKerusakanFasilitas />} />
         <Route path="/admin/ormawa" element={<AdminOrmawa />} />
+        <Route path="/admin/pengajuan-seminar" element={<AdminPengajuanSeminar />} />
       </Routes>
     </Router>
   );

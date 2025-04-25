@@ -7,7 +7,6 @@ const About = () => {
   const title2Ref = useRef(null);
   const title3Ref = useRef(null);
 
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,7 +25,6 @@ const About = () => {
     if (titleRef.current) observer.observe(titleRef.current);
     if (title2Ref.current) observer.observe(title2Ref.current);
     if (title3Ref.current) observer.observe(title3Ref.current);
-
 
     // Cleanup observer saat unmount
     return () => {

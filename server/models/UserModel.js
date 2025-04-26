@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import db from "../config/db.js";
+const { Sequelize } = require ("sequelize");
+const db = require ("../config/db.js");
 
 const { DataTypes } = Sequelize;
 
@@ -9,10 +9,19 @@ const Users = db.define('users', {
         autoIncrement: true,
         primaryKey: true
     },
-    name: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
+            notEmpty: true
+        }
+    },
+    email: {  
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,  
+        validate: {
+            isEmail: true, 
             notEmpty: true
         }
     },
@@ -28,4 +37,4 @@ const Users = db.define('users', {
     timestamps: false // karena tidak ada createdAt dan updatedAt
 });
 
-export default Users;
+module.exports = Users;

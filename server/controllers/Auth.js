@@ -1,13 +1,14 @@
-import User from "../models/UserModel.js";
-import bcrypt from "bcryptjs";
+const User = require ("../models/UserModel.js");
+const bcrypt = require ("bcryptjs");
 
 // Login
-export const Login = async (req, res) => {
+const Login = async (req, res) => {
     try {
         // Find user by username
         const user = await User.findOne({
             where: {
-                username: req.body.username
+                // username: req.body.username
+                email: req.body.email
             }
         });
         // If user not found
@@ -22,8 +23,8 @@ export const Login = async (req, res) => {
         console.log("Session created:", req.session); // Debugging output
 
         // Send response with user details (no role field as per your DB schema)
-        const { id, username } = user;
-        res.status(200).json({ id, username });
+        const { id, username, email } = user;
+        res.status(200).json({ id, username, email });
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: "Internal server error" });
@@ -31,7 +32,7 @@ export const Login = async (req, res) => {
 }
 
 // Get User (Logged-in user details)
-export const Me = async (req, res) => {
+const Me = async (req, res) => {
     try {
         if (!req.session.userId) {
             return res.status(401).json({ msg: "Please login to your account!" });
@@ -39,7 +40,7 @@ export const Me = async (req, res) => {
 
         // Find the logged-in user by ID (stored in session)
         const user = await User.findOne({
-            attributes: ['id', 'username'], // No role field
+            attributes: ['id', 'username', 'email'], // No role field
             where: {
                 id: req.session.userId
             }
@@ -57,9 +58,15 @@ export const Me = async (req, res) => {
 }
 
 // Logout
-export const logOut = (req, res) => {
+const logOut = (req, res) => {
     req.session.destroy((err) => {
         if (err) return res.status(400).json({ msg: "Cannot log out" });
         res.status(200).json({ msg: "You are logged out" });
     });
 }
+
+module.exports = {
+    Login,
+    Me,
+    logOut
+};

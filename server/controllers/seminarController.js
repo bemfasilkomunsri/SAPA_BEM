@@ -1,26 +1,44 @@
 const db = require("../config/db");
+const { QueryTypes } = require('sequelize');
 
-exports.getSeminar = (req, res) => {
-  db.query("SELECT * FROM pengajuan_seminar", (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(result);
-  });
+// GET semua laporan pengajuan seminar
+exports.getSeminar = async (req, res) => {
+  try {
+    const [results] = await db.query("SELECT * FROM pengajuan_seminar");
+    res.json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message  });
+  }
 };
 
-exports.postSeminar = (req, res) => {
+// POST laporan ormawa
+exports.postSeminar = async (req, res) => {
   const { Jurusan, Judul_Seminar, Deskripsi_Seminar, proses } = req.body;
-
+  
   if (!Jurusan || !Judul_Seminar || !Deskripsi_Seminar) {
     return res.status(400).json({ message: "Data tidak lengkap" });
   }
-
-  const sql = `
-    INSERT INTO pengajuan_seminar 
-    (Jurusan, Judul_Seminar, Deskripsi_Seminar, proses)
-    VALUES (?, ?, ?, ?)`;
-
-  db.query(sql, [Jurusan, Judul_Seminar, Deskripsi_Seminar, proses], (err) => {
-    if (err) return res.status(500).json({ message: "Gagal mengirim data" });
-    res.json({ message: "Pengajuan seminar berhasil dikirim" });
-  });
+  
+  try {
+    await db.query(
+      `INSERT INTO pengajuan_seminar  
+      (Jurusan, Judul_Seminar, Deskripsi_Seminar, proses)
+      VALUES (?, ?, ?, ?)`,
+      {
+        replacements: [ 
+          Jurusan || '', 
+          Judul_Seminar || '', 
+          Deskripsi_Seminar || '', 
+          proses || ''
+        ],
+        type: QueryTypes.INSERT,
+        raw: true
+      }
+    );
+      res.json({ msg: "Pengajuan seminar berhasil dikirim" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+  }
 };

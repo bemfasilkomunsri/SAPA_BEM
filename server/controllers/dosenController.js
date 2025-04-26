@@ -1,22 +1,44 @@
 const db = require("../config/db");
+const { QueryTypes } = require('sequelize');
 
-exports.getKinerjaDosen = (req, res) => {
-  db.query("SELECT * FROM kinerja_dosen", (err, results) => {
-    if (err) return res.status(500).json({ error: "Gagal mengambil data" });
+//GET semua laporan kinerja dosen
+exports.getKinerjaDosen = async (req, res) => {
+  try {
+    const [results] = await db.query("SELECT * FROM kinerja_dosen");
     res.json(results);
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Gagal mengambil data" });
+  }
 };
 
-exports.postKinerjaDosen = (req, res) => {
+// Post Kirim Data Laporan Kinerja Dosen
+exports.postKinerjaDosen = async (req, res) => {
+  console.log("Isi req.body:", req.body);
+
   const { Subjek_Aspirasi, Target_Aspirasi, Jurusan_Dosen, Matakuliah_Dosen, Isi_Aspirasi } = req.body;
-
-  const sql = `
-    INSERT INTO kinerja_dosen 
-    (Subjek_Aspirasi, Target_Aspirasi, Jurusan_Dosen, Matakuliah_Dosen, Isi_Aspirasi)
-    VALUES (?, ?, ?, ?, ?)`;
-
-  db.query(sql, [Subjek_Aspirasi, Target_Aspirasi, Jurusan_Dosen, Matakuliah_Dosen, Isi_Aspirasi], (err) => {
-    if (err) return res.status(500).json({ error: "Gagal menyimpan data" });
-    res.json({ message: "Aspirasi berhasil dikirim!" });
-  });
+  
+  try {
+    await db.query(
+      `INSERT INTO kinerja_dosen 
+        (Subjek_Aspirasi, Target_Aspirasi, Jurusan_Dosen, Matakuliah_Dosen, Isi_Aspirasi)
+       VALUES (?, ?, ?, ?, ?)`,
+      {
+        replacements: [ 
+          Subjek_Aspirasi || '', 
+          Target_Aspirasi || '', 
+          Jurusan_Dosen || '', 
+          Matakuliah_Dosen || '', 
+          Isi_Aspirasi || ''
+        ],
+        type: QueryTypes.INSERT,
+        raw: true
+      }
+    );
+    
+    res.json({ msg: "Aspirasi berhasil dikirim!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 };

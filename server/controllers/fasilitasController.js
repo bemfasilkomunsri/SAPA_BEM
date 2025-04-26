@@ -1,23 +1,42 @@
 const db = require("../config/db");
+const { QueryTypes } = require('sequelize');
 
-exports.getFasilitas = (req, res) => {
-  db.query("SELECT * FROM kerusakan_fasilitas ORDER BY id DESC", (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(result);
-  });
+// GET semua laporan fasilitas
+exports.getFasilitas = async (req, res) => {
+  try {
+    const [results] = await db.query("SELECT * FROM kerusakan_fasilitas ORDER BY id DESC");
+    res.json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message  });
+  }
 };
 
-exports.postFasilitas = (req, res) => {
+// POST laporan fasilitas
+exports.postFasilitas = async (req, res) => {
   const { fasilitas_yang_rusak, deskripsi_kerusakan, proses } = req.body;
   const berkas = req.file ? req.file.filename : null;
-
-  const sql = `
-    INSERT INTO kerusakan_fasilitas 
-    (fasilitas_yang_rusak, deskripsi_kerusakan, proses, berkas)
-    VALUES (?, ?, ?, ?)`;
-
-  db.query(sql, [fasilitas_yang_rusak, deskripsi_kerusakan, proses, berkas], (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Laporan berhasil dikirim" });
-  });
+  
+  try {
+    await db.query(
+      `INSERT INTO kerusakan_fasilitas 
+        (fasilitas_yang_rusak, deskripsi_kerusakan, proses, berkas)
+       VALUES (?, ?, ?, ?)`,
+      {
+        replacements: [ 
+          fasilitas_yang_rusak || '', 
+          deskripsi_kerusakan || '', 
+          proses || '', 
+          berkas || '', 
+        ],
+        type: QueryTypes.INSERT,
+        raw: true
+      }
+    );
+    
+    res.json({ msg: "Laporan berhasil dikirim!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 };

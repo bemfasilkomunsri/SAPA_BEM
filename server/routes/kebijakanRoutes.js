@@ -7,6 +7,6 @@ const upload = require("../config/multerConfig");
 router.get("/", kebijakanController.getKebijakan);
 
 // POST laporan baru dengan file pendukung
-router.post("/", upload.single("data_pendukung"), kebijakanController.postKebijakan);
+router.post("/", upload.single("dataPendukung"), kebijakanController.postKebijakan);
 
 module.exports = router;

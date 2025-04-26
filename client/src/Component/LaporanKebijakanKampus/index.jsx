@@ -11,12 +11,14 @@ function LaporanKebijakanKampus() {
   });
   const [file, setFile] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://localhost:5000/kebijakan_kampus")
+    fetch(`${API_URL}/kebijakan_kampus`)
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [API_URL]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,9 +39,9 @@ function LaporanKebijakanKampus() {
     submissionData.append("nama_kebijakan", formData.nama_kebijakan);
     submissionData.append("isi_aspirasi", formData.isi_aspirasi);
     submissionData.append("proses", formData.proses);
-    if (file) submissionData.append("data_pendukung", file);
-
-    fetch("http://localhost:5000/kebijakan_kampus", {
+    if (file) submissionData.append("dataPendukung", file); 
+  
+    fetch(`${API_URL}/kebijakan_kampus`, {
       method: "POST",
       body: submissionData,
     })
@@ -53,13 +55,13 @@ function LaporanKebijakanKampus() {
           proses: 0,
         });
         setFile(null);
-        return fetch("http://localhost:5000/kebijakan_kampus");
+        return fetch(`${API_URL}/kebijakan_kampus`);
       })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
   };
-
+  
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
       <h1 style={{ fontSize: "24px", fontWeight: "600" }}>
@@ -78,11 +80,11 @@ function LaporanKebijakanKampus() {
           padding: "30px",
           borderRadius: "6px",
           textAlign: "left",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
-          backgroundColor: "#fff", 
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#fff",
         }}
       >
-        {[ 
+        {[
           { label: "Judul Aspirasi", name: "judul_aspirasi", type: "text" },
           { label: "Nama Kebijakan", name: "nama_kebijakan", type: "text" },
         ].map(({ label, name, type }) => (
@@ -142,14 +144,15 @@ function LaporanKebijakanKampus() {
         </div>
 
         <div style={{ marginBottom: "20px" }}>
-          <label style={{ fontWeight: "500" }}>Upload Data Pendukung</label>
-          <input
-            type="file"
-            name="data_pendukung"
-            onChange={handleFileChange}
-            style={{ marginTop: "8px" }}
-          />
+            <label style={{ fontWeight: "500" }}>Upload Data Pendukung</label>
+            <input
+              type="file"
+              name="dataPendukung" 
+              onChange={handleFileChange}
+              style={{ marginTop: "8px" }}
+            />
         </div>
+
 
         <button className="custom-button" type="submit">
           Kirim Aspirasi

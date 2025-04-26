@@ -67,11 +67,6 @@ app.use("/ormawa", ormawaRoutes);
 // store.sync();
 
 // Menjalankan server
-// const port = process.env.PORT || 5000;
-// app.listen(port, () => {
-//   console.log(`Server backend berjalan di port ${port}`);
-// });
-
 const PORT = process.env.APP_PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server up and running on port ${PORT}`);

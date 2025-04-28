@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from "../features/AuthSlice";
 import Admin from "../Component/AdminDashboard";
-import NavbarPages from "../Component/NavbarPages"
+import NavbarPages from "../Component/NavbarPages";
 
 
 const AdminPage = () => {

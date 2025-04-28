@@ -43,7 +43,7 @@ const pengajuanSeminarList = () => {
             <th className="p-2 border">No</th>
             <th className="p-2 border">Jurusan</th>
             <th className="p-2 border">Judul Seminar</th>
-            <th className="p-2 border">Deskripsi Seminar</th>
+            <th className="p-2 border max-w-xs break-words">Deskripsi Seminar</th>
             <th className="p-2 border">Aksi</th>
           </tr>
         </thead>

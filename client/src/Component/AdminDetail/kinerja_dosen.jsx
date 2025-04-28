@@ -41,19 +41,22 @@ const KinerjaDosenList = () => {
         <thead>
           <tr className="bg-gray-200 text-left">
             <th className="p-2 border">No</th>
-            <th className="p-2 border">Nama Dosen</th>
-            <th className="p-2 border">Isi Laporan</th>
-            <th className="p-2 border">Tanggal</th>
-            <th className="p-2 border">Aksi</th>
+            <th className="p-2 border">Subjek Aspirasi</th>
+            <th className="p-2 border">Target Aspirasi</th>
+            <th className="p-2 border">Jurusan Dosen</th>
+            <th className="p-2 border">Matakuliah Dosen</th>
+            <th className="p-2 border max-w-xs break-words">Isi Aspirasi</th>
           </tr>
         </thead>
         <tbody>
           {laporan.map((item, index) => (
             <tr key={item.id}>
               <td className="p-2 border">{index + 1}</td>
+              <td className="p-2 border">{item.Subjek_Aspirasi}</td>
               <td className="p-2 border">{item.Target_Aspirasi}</td>
+              <td className="p-2 border">{item.Jurusan_Dosen}</td>
+              <td className="p-2 border">{item.Matakuliah_Dosen}</td>
               <td className="p-2 border">{item.Isi_Aspirasi}</td>
-              <td className="p-2 border">{item.tanggal || "-"}</td>
               <td className="p-2 border flex gap-2">
                 <button
                   onClick={() => navigate(`/admin/kinerja-dosen/${item.id}`)}

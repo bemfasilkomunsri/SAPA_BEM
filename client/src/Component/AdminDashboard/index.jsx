@@ -23,7 +23,6 @@ const Admin = () => {
         axios.get('http://localhost:5000/ormawa'),
         axios.get('http://localhost:5000/kerusakan_fasilitas'),
         axios.get('http://localhost:5000/kebijakan_kampus'),
-        axios.get('http://localhost:5000/pengajuan_seminar')
       ]);
 
       setData({
@@ -39,23 +38,23 @@ const Admin = () => {
 
   const Card = ({ title, count, color, link }) => (
     <div
-      className={`rounded-xl p-4 w-full md:w-[230px] text-white shadow cursor-pointer transition hover:scale-105 ${color}`}
+      className={`rounded-xl p-6 text-white shadow-lg transition-all transform hover:scale-105 hover:shadow-xl ${color} hover:bg-opacity-90 cursor-pointer`}
       onClick={() => navigate(link)}
     >
-      <h2 className="text-sm font-semibold uppercase">{title}</h2>
-      <p className="text-3xl font-bold">{count}</p>
-      <p className="underline text-sm mt-2">Lihat Detail</p>
+      <h2 className="text-lg font-semibold uppercase">{title}</h2>
+      <p className="text-4xl font-bold mt-2">{count}</p>
+      <p className="text-sm underline mt-2 opacity-80">Lihat Detail</p>
     </div>
   );
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Dashboard Admin GASPOL</h1>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="p-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-pink-50 min-h-screen pt-20">
+      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">Dashboard Admin GASPOL</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <Card
           title="Kinerja Dosen"
           count={data.kinerja}
-          color="bg-cyan-500"
+          color="bg-cyan-600"
           link="/admin/kinerja-dosen"
         />
         <Card
@@ -73,13 +72,13 @@ const Admin = () => {
         <Card
           title="Kebijakan Kampus"
           count={data.kebijakan}
-          color="bg-yellow-500"
+          color="bg-yellow-600"
           link="/admin/kebijakan-kampus"
         />
         <Card
           title="Ormawa"
-          count={data.kebijakan}
-          color="bg-gray-500"
+          count={data.ormawa}
+          color="bg-gray-700"
           link="/admin/ormawa"
         />
       </div>

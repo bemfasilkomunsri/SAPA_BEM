@@ -34,7 +34,7 @@ exports.postFasilitas = async (req, res) => {
       }
     );
     
-    res.json({ msg: "Laporan berhasil dikirim!" });
+    res.json({ message: "Laporan berhasil dikirim!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

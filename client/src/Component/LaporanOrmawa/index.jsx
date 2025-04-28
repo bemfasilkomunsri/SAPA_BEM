@@ -10,9 +10,13 @@ function LaporanOrmawa() {
     Organisasi_yang_Dituju: "",
     Kritik_dan_Saran: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:5000/ormawa")
+    fetch(`${API_URL}/ormawa`)
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -29,7 +33,12 @@ function LaporanOrmawa() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/ormawa", {
+    if (!formData.Nama || !formData.Kritik_dan_Saran) {
+      setErrorMessage("Nama dan Kritik/Saran wajib diisi.");
+      return;
+    }
+
+    fetch(`${API_URL}/ormawa`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +47,7 @@ function LaporanOrmawa() {
     })
       .then((res) => res.json())
       .then((response) => {
-        alert(response.message);
+        setSuccessMessage(response.message);
         setFormData({
           Nama: "",
           NIM: "",
@@ -46,7 +55,12 @@ function LaporanOrmawa() {
           Organisasi_yang_Dituju: "",
           Kritik_dan_Saran: "",
         });
-        return fetch("http://localhost:5000/ormawa");
+
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 5000);
+
+        return fetch(`${API_URL}/ormawa`);
       })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
@@ -70,19 +84,15 @@ function LaporanOrmawa() {
           padding: "30px",
           borderRadius: "6px",
           textAlign: "left",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
-          backgroundColor: "#fff", 
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#fff",
         }}
       >
-        {[
+        {[ 
           { label: "Nama", name: "Nama", type: "text" },
           { label: "NIM", name: "NIM", type: "text" },
           { label: "Jurusan", name: "Jurusan", type: "text" },
-          {
-            label: "Organisasi yang Dituju",
-            name: "Organisasi_yang_Dituju",
-            type: "text",
-          },
+          { label: "Organisasi yang Dituju", name: "Organisasi_yang_Dituju", type: "text" }
         ].map(({ label, name, type }) => (
           <div key={name} style={{ marginBottom: "20px" }}>
             <label style={{ fontWeight: "500" }}>{label}</label>
@@ -129,6 +139,18 @@ function LaporanOrmawa() {
         <button className="custom-button" type="submit">
           Kirim Aspirasi
         </button>
+
+        {errorMessage && (
+          <div className="alert error">
+            ❌ {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="alert success">
+            ✅ {successMessage}
+          </div>
+        )}
       </form>
     </div>
   );

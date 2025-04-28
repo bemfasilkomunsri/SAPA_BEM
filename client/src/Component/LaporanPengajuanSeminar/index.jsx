@@ -9,9 +9,13 @@ function LaporanPengajuanSeminar() {
     Deskripsi_Seminar: "",
     proses: 0,
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:5000/pengajuan_seminar")
+    fetch(`${API_URL}/pengajuan_seminar`)
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -27,8 +31,15 @@ function LaporanPengajuanSeminar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    fetch("http://localhost:5000/pengajuan_seminar", {
+
+    // Validasi input jika perlu
+    if (!formData.Judul_Seminar || !formData.Deskripsi_Seminar) {
+      setErrorMessage("Judul Seminar dan Deskripsi wajib diisi.");
+      return;
+    }
+
+    // Kirim data pengajuan seminar ke API
+    fetch(`${API_URL}/pengajuan_seminar`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,21 +48,24 @@ function LaporanPengajuanSeminar() {
     })
       .then((res) => res.json())
       .then((response) => {
-        alert(response.message);
+        setSuccessMessage(response.message);
         setFormData({
           Jurusan: "",
           Judul_Seminar: "",
           Deskripsi_Seminar: "",
           proses: 0,
         });
-        return fetch("http://localhost:5000/pengajuan_seminar");
+
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 5000);
+
+        return fetch(`${API_URL}/pengajuan_seminar`);
       })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
   };
-  
-  
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
@@ -65,7 +79,6 @@ function LaporanPengajuanSeminar() {
 
       <form
         onSubmit={handleSubmit}
-        encType="multipart/form-data"
         style={{
           maxWidth: "500px",
           margin: "0 auto",
@@ -76,9 +89,9 @@ function LaporanPengajuanSeminar() {
           backgroundColor: "#fff", 
         }}
       >
-        {[
+        {[ 
           { label: "Jurusan", name: "Jurusan", type: "text" },
-          { label: "Judul Seminar", name: "Judul_Seminar", type: "text" },
+          { label: "Judul Seminar", name: "Judul_Seminar", type: "text" }
         ].map(({ label, name, type }) => (
           <div key={name} style={{ marginBottom: "20px" }}>
             <label style={{ fontWeight: "500" }}>{label}</label>
@@ -121,27 +134,25 @@ function LaporanPengajuanSeminar() {
             }}
           ></textarea>
         </div>
-
-        <div style={{ display: "none" }}>
-          {/* Tetap dikirim untuk keperluan backend */}
-          <label>Proses</label>
-          <select
-            name="proses"
-            value={formData.proses}
-            onChange={handleChange}
-          >
-            <option value={0}>Pending</option>
-            <option value={1}>Diproses</option>
-            <option value={2}>Selesai</option>
-          </select>
-        </div>
-
+        
         <button className="custom-button" type="submit">
           Kirim Pengajuan
         </button>
+
+        {errorMessage && (
+          <div className="alert error">
+            ❌ {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="alert success">
+            ✅ {successMessage}
+          </div>
+        )}
       </form>
     </div>
   );
-}
+}  
 
 export default LaporanPengajuanSeminar;

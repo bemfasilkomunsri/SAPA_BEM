@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./style.css";
 
 function LaporanKinerjaDosen() {
-  const [laporan, setLaporan] = useState([]);
   const [formData, setFormData] = useState({
     Subjek_Aspirasi: "",
     Target_Aspirasi: "",
@@ -10,13 +9,10 @@ function LaporanKinerjaDosen() {
     Matakuliah_Dosen: "",
     Isi_Aspirasi: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:5000/kinerja_dosen")
-      .then((res) => res.json())
-      .then((data) => setLaporan(data))
-      .catch((err) => console.error(err));
-  }, []);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +25,14 @@ function LaporanKinerjaDosen() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/kinerja_dosen", {
+    // Validasi input jika perlu
+    if (!formData.Subjek_Aspirasi || !formData.Isi_Aspirasi) {
+      setErrorMessage("Subjek dan Isi Aspirasi wajib diisi.");
+      return;
+    }
+
+    // Kirim data aspirasi ke API
+    fetch(`${API_URL}/kinerja_dosen`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +41,7 @@ function LaporanKinerjaDosen() {
     })
       .then((res) => res.json())
       .then((response) => {
-        alert(response.message);
+        setSuccessMessage(response.message);
         setFormData({
           Subjek_Aspirasi: "",
           Target_Aspirasi: "",
@@ -46,21 +49,20 @@ function LaporanKinerjaDosen() {
           Matakuliah_Dosen: "",
           Isi_Aspirasi: "",
         });
-        return fetch("http://localhost:5000/kinerja_dosen");
+
+        // Setelah 5 detik, hilangkan pesan sukses
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 5000);
       })
-      .then((res) => res.json())
-      .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
   };
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
-      <h1 style={{ fontSize: "24px", fontWeight: "600" }}>
-        Aspirasi Kinerja Dosen
-      </h1>
+      <h1 style={{ fontSize: "24px", fontWeight: "600" }}>Aspirasi Kinerja Dosen</h1>
       <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#555" }}>
-        Sampaikan aspirasi Anda terkait dosen dengan mengisi form berikut secara
-        objektif dan bijaksana.
+        Sampaikan aspirasi Anda terkait dosen dengan mengisi form berikut secara objektif dan bijaksana.
       </p>
 
       <form
@@ -71,11 +73,11 @@ function LaporanKinerjaDosen() {
           padding: "30px",
           borderRadius: "6px",
           textAlign: "left",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
-          backgroundColor: "#fff", 
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#fff",
         }}
       >
-        {[
+        {[ 
           { label: "Subjek Aspirasi", name: "Subjek_Aspirasi", type: "text" },
           { label: "Target Aspirasi", name: "Target_Aspirasi", type: "text" },
           { label: "Jurusan Dosen", name: "Jurusan_Dosen", type: "text" },
@@ -126,6 +128,18 @@ function LaporanKinerjaDosen() {
         <button className="custom-button" type="submit">
           Kirim Aspirasi
         </button>
+
+        {errorMessage && (
+          <div className="alert error">
+            ❌ {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="alert success">
+            ✅ {successMessage}
+          </div>
+        )}
       </form>
     </div>
   );

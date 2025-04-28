@@ -34,7 +34,7 @@ exports.postKebijakan = async (req, res) => {
         raw: true
       }
     );
-      res.json({ msg: "Laporan berhasil ditambahkan" });
+      res.json({ message: "Laporan berhasil ditambahkan" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: err.message });

@@ -36,7 +36,7 @@ exports.postKinerjaDosen = async (req, res) => {
       }
     );
     
-    res.json({ msg: "Aspirasi berhasil dikirim!" });
+    res.json({ message: "Aspirasi berhasil dikirim!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

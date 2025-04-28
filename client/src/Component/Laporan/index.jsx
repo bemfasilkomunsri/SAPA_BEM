@@ -94,7 +94,7 @@ export default function ReportFormUI() {
             </p>
             <button
               onClick={() => navigate("/laporan")}
-              className="flex font-normal items-center mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 border hover:bg-gray-400 duration-300 rounded-md text-sm"
+              className="flex font-normal items-center mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 bg-[#4A0000] border border-[#4A0000] text-white hover:bg-[#FFEBBC] hover:text-[#000000] duration-300 rounded-md text-sm"
             >
               Lapor sekarang
             </button>

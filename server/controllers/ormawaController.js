@@ -37,7 +37,7 @@ exports.postOrmawa = async (req, res) => {
         raw: true
       }
     );
-      res.json({ msg: "Aspirasi Ormawa berhasil dikirim" });
+      res.json({ message: "Aspirasi Ormawa berhasil dikirim" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: err.message });

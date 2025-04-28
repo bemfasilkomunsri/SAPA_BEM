@@ -36,7 +36,7 @@ exports.postSeminar = async (req, res) => {
         raw: true
       }
     );
-      res.json({ msg: "Pengajuan seminar berhasil dikirim" });
+      res.json({ message: "Pengajuan seminar berhasil dikirim" });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: err.message });

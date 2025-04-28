@@ -10,6 +10,8 @@ function LaporanKebijakanKampus() {
     proses: 0,
   });
   const [file, setFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,25 +31,38 @@ function LaporanKebijakanKampus() {
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    if (selectedFile && selectedFile.size > 3 * 1024 * 1024) { // 3MB
+      setErrorMessage("Ukuran file maksimal 3MB.");
+      setFile(null);
+    } else {
+      setErrorMessage("");
+      setFile(selectedFile);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (file && file.size > 3 * 1024 * 1024) {
+      setErrorMessage("Ukuran file melebihi 3MB. Silakan pilih file lain.");
+      return;
+    }
+
     const submissionData = new FormData();
     submissionData.append("judul_aspirasi", formData.judul_aspirasi);
     submissionData.append("nama_kebijakan", formData.nama_kebijakan);
     submissionData.append("isi_aspirasi", formData.isi_aspirasi);
     submissionData.append("proses", formData.proses);
-    if (file) submissionData.append("dataPendukung", file); 
-  
+    if (file) submissionData.append("dataPendukung", file);
+
     fetch(`${API_URL}/kebijakan_kampus`, {
       method: "POST",
       body: submissionData,
     })
       .then((res) => res.json())
       .then((response) => {
-        alert(response.message);
+        setSuccessMessage(response.message);
         setFormData({
           judul_aspirasi: "",
           nama_kebijakan: "",
@@ -61,7 +76,17 @@ function LaporanKebijakanKampus() {
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
   };
-  
+
+  useEffect(() => {
+    if (errorMessage || successMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+        setSuccessMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage, successMessage]);
+
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
       <h1 style={{ fontSize: "24px", fontWeight: "600" }}>
@@ -144,19 +169,30 @@ function LaporanKebijakanKampus() {
         </div>
 
         <div style={{ marginBottom: "20px" }}>
-            <label style={{ fontWeight: "500" }}>Upload Data Pendukung</label>
-            <input
-              type="file"
-              name="dataPendukung" 
-              onChange={handleFileChange}
-              style={{ marginTop: "8px" }}
-            />
+          <label style={{ fontWeight: "500" }}>Upload Data Pendukung</label>
+          <input
+            type="file"
+            name="dataPendukung"
+            onChange={handleFileChange}
+            style={{ marginTop: "8px" }}
+          />
         </div>
-
 
         <button className="custom-button" type="submit">
           Kirim Aspirasi
         </button>
+
+        {errorMessage && (
+          <div className="alert error">
+            ❌ {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="alert success">
+            ✅ {successMessage}
+          </div>
+        )}
       </form>
     </div>
   );

@@ -9,13 +9,17 @@ function LaporanKerusakanFasilitas() {
     proses: 0,
   });
   const [file, setFile] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:5000/kerusakan_fasilitas")
+    fetch(`${API_URL}/kerusakan_fasilitas`)
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [API_URL]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,36 +30,59 @@ function LaporanKerusakanFasilitas() {
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    if (selectedFile && selectedFile.size > 3 * 1024 * 1024) { // 3MB
+      setErrorMessage("Ukuran file maksimal 3MB.");
+      setFile(null);
+    } else {
+      setErrorMessage("");
+      setFile(selectedFile);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (file && file.size > 3 * 1024 * 1024) {
+      setErrorMessage("Ukuran file melebihi 3MB. Silakan pilih file lain.");
+      return;
+    }
+
     const submissionData = new FormData();
     submissionData.append("fasilitas_yang_rusak", formData.fasilitas_yang_rusak);
     submissionData.append("deskripsi_kerusakan", formData.deskripsi_kerusakan);
     submissionData.append("proses", formData.proses);
     if (file) submissionData.append("berkas", file);
 
-    fetch("http://localhost:5000/kerusakan_fasilitas", {
+    fetch(`${API_URL}/kerusakan_fasilitas`, {
       method: "POST",
       body: submissionData,
     })
       .then((res) => res.json())
       .then((response) => {
-        alert(response.message);
+        setSuccessMessage(response.message);
         setFormData({
           fasilitas_yang_rusak: "",
           deskripsi_kerusakan: "",
           proses: 0,
         });
         setFile(null);
-        return fetch("http://localhost:5000/kerusakan_fasilitas");
+        return fetch(`${API_URL}/kerusakan_fasilitas`);
       })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
   };
+
+  useEffect(() => {
+    if (errorMessage || successMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+        setSuccessMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage, successMessage]);
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
@@ -63,7 +90,8 @@ function LaporanKerusakanFasilitas() {
         Laporan Kerusakan Fasilitas
       </h1>
       <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#555" }}>
-        Laporkan segala bentuk kerusakan fasilitas yang Anda temui di lingkungan kampus. Sertakan bukti agar laporan dapat segera ditindaklanjuti.
+        Laporkan segala bentuk kerusakan fasilitas yang Anda temui di lingkungan kampus. 
+        Sertakan bukti agar laporan dapat segera ditindaklanjuti.
       </p>
 
       <form
@@ -75,8 +103,8 @@ function LaporanKerusakanFasilitas() {
           padding: "30px",
           borderRadius: "6px",
           textAlign: "left",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
-          backgroundColor: "#fff", 
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#fff",
         }}
       >
         <div style={{ marginBottom: "20px" }}>
@@ -146,6 +174,18 @@ function LaporanKerusakanFasilitas() {
         <button className="custom-button" type="submit">
           Kirim Laporan
         </button>
+
+        {errorMessage && (
+          <div className="alert error">
+            ❌ {errorMessage}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="alert success">
+            ✅ {successMessage}
+          </div>
+        )}
       </form>
     </div>
   );

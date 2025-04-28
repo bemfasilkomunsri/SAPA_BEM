@@ -25,17 +25,6 @@ const KerusakanFasilitasList = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (confirm("Yakin ingin menghapus laporan ini?")) {
-      try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/kerusakan_fasilitas/${id}`);
-        getLaporan(); // Refresh data
-      } catch (err) {
-        console.error("Gagal menghapus", err);
-      }
-    }
-  };
-
   const exportToExcel = () => {
     const mappedData = laporan.map((item, index) => ({
       "No": index + 1,
@@ -114,7 +103,7 @@ const KerusakanFasilitasList = () => {
           <tr className="bg-gray-200 text-left">
             <th className="p-2 border">#</th>
             <th className="p-2 border">Fasilitas Yang Rusak</th>
-            <th className="p-2 border">Deskripsi Kerusakan</th>
+            <th className="p-2 border max-w-xs break-words">Deskripsi Kerusakan</th>
             <th className="p-2 border">Bukti</th>
             <th className="p-2 border">Aksi</th>
           </tr>
@@ -154,18 +143,13 @@ const KerusakanFasilitasList = () => {
                 )}
               </td>
               <td className="p-2 border flex gap-2">
-                <button
-                  onClick={() => navigate(`/admin/kerusakan-fasilitas/${item.id}`)}
+                <a
+                  href={`${import.meta.env.VITE_API_URL}/uploads/${item.berkas}`}
+                  download
                   className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                 >
-                  Detail
-                </button>
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                >
-                  Hapus
-                </button>
+                  Download Bukti
+                </a>
               </td>
             </tr>
           ))}
@@ -184,9 +168,7 @@ const KerusakanFasilitasList = () => {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
-            currentPage === 1 ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
-          }`}
+          className={`px-4 py-2 rounded ${currentPage === 1 ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
         >
           Sebelumnya
         </button>
@@ -196,9 +178,7 @@ const KerusakanFasilitasList = () => {
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
-            currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
-          }`}
+          className={`px-4 py-2 rounded ${currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"}`}
         >
           Selanjutnya
         </button>

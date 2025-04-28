@@ -16,3 +16,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .about-us {
+    color: #4A0000 !important;
+  }

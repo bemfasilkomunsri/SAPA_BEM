@@ -131,13 +131,13 @@ function LaporanKinerjaDosen() {
 
         {errorMessage && (
           <div className="alert error">
-            ❌ {errorMessage}
+              {errorMessage}
           </div>
         )}
 
         {successMessage && (
           <div className="alert success">
-            ✅ {successMessage}
+              {successMessage}
           </div>
         )}
       </form>

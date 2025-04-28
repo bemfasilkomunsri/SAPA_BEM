@@ -40,15 +40,15 @@ const Home = () => {
             <h1 className="text lg:text-5xl text-4xl font-medium">
               Sampaikan Pelaporanmu
             </h1>
-            <h1 className="text  mt-2 lg:text-5xl text-4xl font-medium">
-              Bersama GASPOL
+            <h1 className="text mt-2 lg:text-5xl text-4xl font-medium">
+              Bersama <span className="gaspol">GASPOL</span>
             </h1>
-            <p className=" max-w-[36rem] md:text-base text-sm mt-8">
+            <p className="max-w-[36rem] md:text-base text-sm mt-8">
               Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa
               arah laporkan melalui GASPOL, sebuah forum resmi yang memastikan
               setiap masukan didengar dan ditindaklanjuti demi terciptanya
               lingkungan yang lebih baik bagi Fasilkom UNSRI.
-            </p>
+            </p>
             <Link
               to="about"
               smooth={true}

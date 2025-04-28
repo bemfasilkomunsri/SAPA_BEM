@@ -39,7 +39,7 @@ const About = () => {
     <Element name="about">
       <section className="pt-44 about">
         <div>
-          <h1 ref={titleRef} className="fade-up text-center text text-2xl font-medium">
+          <h1 ref={titleRef} className="fade-up text-center text text-2xl font-medium about-us">
             Tentang Kami
           </h1>
         </div>

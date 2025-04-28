@@ -53,7 +53,7 @@ const Navbar = () => {
           href="/"
           className="my-6 self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-medium mx-12 lg:inline hidden"
         >
-          BEM Apps
+          BEM APPS
         </a>
       </div>
 

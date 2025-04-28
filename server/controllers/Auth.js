@@ -7,8 +7,8 @@ const Login = async (req, res) => {
         // Find user by username
         const user = await User.findOne({
             where: {
-                // username: req.body.username
-                email: req.body.email
+                username: req.body.username
+                // email: req.body.email
             }
         });
         // If user not found

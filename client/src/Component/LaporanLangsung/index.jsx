@@ -12,8 +12,10 @@ function Laporan() {
   });
   const [file, setFile] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://localhost:5000/kebijakan_kampus")
+    fetch(`${API_URL}/kebijakan_kampus`)
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -40,7 +42,7 @@ function Laporan() {
     submissionData.append("proses", formData.proses);
     if (file) submissionData.append("data_pendukung", file);
 
-    fetch("http://localhost:5000/kebijakan_kampus", {
+    fetch(`${API_URL}/kebijakan_kampus`, {
       method: "POST",
       body: submissionData,
     })
@@ -54,7 +56,7 @@ function Laporan() {
           proses: 0,
         });
         setFile(null);
-        return fetch("http://localhost:5000/kebijakan_kampus");
+        return fetch(`${API_URL}/kebijakan_kampus`);
       })
       .then((res) => res.json())
       .then((data) => setLaporan(data))

@@ -13,7 +13,7 @@ const initialState = {
 export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI) => {
     try {
         // Request POST ke API login dengan mengirimkan username dan password
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
             username: user.username,  // Ganti email dengan username
             password: user.password
         });
@@ -31,7 +31,7 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
 // Request API untuk ambil data user yang sedang login (user yang autentikasi)
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
     try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/me`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/me`);
         return response.data;
     } catch (error) {
         if (error.response) {
@@ -43,7 +43,7 @@ export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
 
 // Request API untuk logout user
 export const LogOut = createAsyncThunk("user/LogOut", async() => {
-    await axios.delete(`${import.meta.env.VITE_API_URL}/logout`);
+    await axios.delete(`${import.meta.env.VITE_API_URL}/api/logout`);
 });
 
 // Slice untuk menangani autentikasi (login, logout, getMe)

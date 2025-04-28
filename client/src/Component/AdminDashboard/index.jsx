@@ -19,10 +19,10 @@ const Admin = () => {
   const fetchCounts = async () => {
     try {
       const [res1, res2, res3, res4] = await Promise.all([
-        axios.get("${import.meta.env.VITE_API_URL}/kinerja_dosen"),
-        axios.get("${import.meta.env.VITE_API_URL}/ormawa"),
-        axios.get("${import.meta.env.VITE_API_URL}/kerusakan_fasilitas"),
-        axios.get("${import.meta.env.VITE_API_URL}/kebijakan_kampus"),
+        axios.get(`${import.meta.env.VITE_API_URL}/kinerja_dosen`),
+        axios.get(`${import.meta.env.VITE_API_URL}/ormawa`),
+        axios.get(`${import.meta.env.VITE_API_URL}/kerusakan_fasilitas`),
+        axios.get(`${import.meta.env.VITE_API_URL}/kebijakan_kampus`),
       ]);
 
       setData({

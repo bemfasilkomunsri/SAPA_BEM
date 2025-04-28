@@ -1,19 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Element, useNavigate } from "react-scroll";
+import { Element } from "react-scroll";
 import { useNavigate as useRouterNavigate } from "react-router-dom";
 
+// Tambahkan warna pada tiap kategori
 const categories = [
-  { id: 1, title: "Kinerja Dosen", link: "/laporan-kinerja-dosen" },
-  { id: 4, title: "Kebijakan Kampus", link: "/laporan-kebijakan-kampus" },
-  { id: 2, title: "Kerusakan Fasilitas", link: "/laporan-kerusakan-fasilitas" },
-  { id: 5, title: "Aspirasi Ormawa", link: "/laporan-ormawa" },
-  { id: 3, title: "Pengajuan Seminar", link: "/laporan-pengajuan-seminar" },
+  { id: 1, title: "Kinerja Dosen", link: "/laporan-kinerja-dosen", colorBorder: "#FFEBBC", colorBg: "#FFF7E1" },
+  { id: 2, title: "Kebijakan Kampus", link: "/laporan-kebijakan-kampus", colorBorder: "#D8D2D2", colorBg: "#B19191" },
+  { id: 3, title: "Kerusakan Fasilitas", link: "/laporan-kerusakan-fasilitas", colorBorder: "#D8D2D2", colorBg: "#B19191" },
+  { id: 4, title: "Aspirasi Ormawa", link: "/laporan-ormawa", colorBorder: "#FFEBBC", colorBg: "#FFF7E1" },
+  { id: 5, title: "Pengajuan Seminar", link: "/laporan-pengajuan-seminar", colorBorder: "#FFEBBC", colorBg: "#FFF7E1" },
 ];
 
 export default function ReportFormUI() {
-  const [selectedCategory, setSelectedCategory] = useState(null); 
-  const [showAlert, setShowAlert] = useState(false); 
-  const navigate = useRouterNavigate(); 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useRouterNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,26 +29,26 @@ export default function ReportFormUI() {
       },
       { threshold: 0.3 }
     );
-  
+
     const elements = document.querySelectorAll(".fade-up");
     elements.forEach((el) => observer.observe(el));
-  
+
     return () => {
       elements.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
   const handleCardClick = (link, id) => {
-    setSelectedCategory({ link, id }); 
-    setShowAlert(false); 
-    navigate(link); 
+    setSelectedCategory({ link, id });
+    setShowAlert(false);
+    navigate(link);
   };
 
   const handleReportClick = () => {
     if (!selectedCategory) {
-      setShowAlert(true); 
+      setShowAlert(true);
     } else {
-      navigate(selectedCategory.link); 
+      navigate(selectedCategory.link);
     }
   };
 
@@ -63,11 +64,12 @@ export default function ReportFormUI() {
                 <button
                   key={item.id}
                   onClick={() => handleCardClick(item.link, item.id)}
-                  className={`w-64 fade-up h-40 rounded-xl border p-3 flex flex-col justify-between shadow-sm transition-transform duration-200 ${
-                    selectedCategory && selectedCategory.id === item.id
-                      ? "border-[#FFEBBC] text-[#FFEBBC]" 
-                      : "border-gray-400 text-gray-800"
-                  } hover:scale-105 hover:shadow-md`}
+                  style={{
+                    borderColor: item.colorBorder,
+                    backgroundColor: item.colorBg,
+                    color: selectedCategory && selectedCategory.id === item.id ? "#4A0000" : "#000000",
+                  }}
+                  className="w-64 fade-up h-40 rounded-xl border p-3 flex flex-col justify-between shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-md"
                 >
                   <span className="text-2xl max-w-[10rem] font-medium">
                     {item.title}
@@ -83,11 +85,12 @@ export default function ReportFormUI() {
                 <button
                   key={item.id}
                   onClick={() => handleCardClick(item.link, item.id)}
-                  className={`w-64 fade-up h-40 rounded-xl border p-3 flex flex-col justify-between shadow-sm transition-transform duration-200 ${
-                    selectedCategory && selectedCategory.id === item.id
-                      ? "border-[#FFEBBC] text-[#FFEBBC]" 
-                      : "border-gray-400 text-gray-800"
-                  } hover:scale-105 hover:shadow-md`}
+                  style={{
+                    borderColor: item.colorBorder,
+                    backgroundColor: item.colorBg,
+                    color: selectedCategory && selectedCategory.id === item.id ? "#4A0000" : "#000000",
+                  }}
+                  className="w-64 fade-up h-40 rounded-xl border p-3 flex flex-col justify-between shadow-sm transition-transform duration-200 hover:scale-105 hover:shadow-md"
                 >
                   <span className="text-2xl max-w-[10rem] font-medium">
                     {item.title}
@@ -113,7 +116,7 @@ export default function ReportFormUI() {
             )}
             <button
               onClick={handleReportClick}
-              className={`flex font-normal items-center mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 bg-[#4A0000] border border-[#4A0000] text-white hover:bg-[#FFEBBC] hover:text-[#000000] duration-300 rounded-md text-sm`}
+              className="flex font-normal items-center mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 bg-[#4A0000] border border-[#4A0000] text-white hover:bg-[#FFEBBC] hover:text-[#000000] duration-300 rounded-md text-sm"
             >
               Lapor sekarang
             </button>

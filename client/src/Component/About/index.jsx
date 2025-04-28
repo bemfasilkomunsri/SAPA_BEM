@@ -37,28 +37,28 @@ const About = () => {
 
   return (
     <Element name="about">
-      <section className="pt-44 about">
+      <section className="pt-30 about">
         <div>
-          <h1 ref={titleRef} className="fade-up text-center text text-2xl font-medium about-us">
+          <h1 ref={titleRef} className="fade-up gotham text-center text text-3xl font-bold about-us">
             Tentang Kami
           </h1>
         </div>
-        <div ref={title2Ref} className="lg:mt-12 fade-up mt-6">
-          <h1 className="text-center text lg:text-3xl text-2xl font-medium">
+        <div ref={title2Ref} className="lg:mt-12 fade-up mt-4">
+          <h1 className="text-center gotham text lg:text-4xl text-3xl font-bold">
             Dari Mahasiswa Untuk Kampus
           </h1>
         </div>
         <div>
-          <p ref={title3Ref} className="fade-up md:mx-auto mx-4 text-center text-angular lg:text-lg text-sm max-w-[43rem] lg:mt-6 mt-8 font-normal">
+          <p ref={title3Ref} className="fade-up gotham md:mx-auto mx-4 text-center text-angular lg:text-lg text-lg max-w-[43rem] lg:mt-6 mt-30 font-normal">
             GASPOL merupakan salah satu Program kerja kolaborasi dari Dinas
-            Kastrad dan Dinas Ristek BEM KM Fasilkom Kabinet Adibrata Kriya.
+            Kastrad dan Dinas Ristek BEM KM Fasilkom Kabinet Artha Dharma.
             GASPOL sendiri berfungsi agar mahasiswa dapat lebih mudah dalam
             melakukan pelaporan seputar kampus Fakultas Ilmu Komputer
             Universitas Sriwijaya. Semua laporan yang telah dibuat nantinya akan
             diaudiensikan dengan pihak dekanat.
           </p>
         </div>
-        <div className="mt-36">
+        <div className="mt-12">
           <CardList />
         </div>
       </section>

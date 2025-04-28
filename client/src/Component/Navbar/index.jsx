@@ -50,15 +50,15 @@ const Navbar = () => {
         <div className="relative mx-12 my-6 gotham self-center lg:inline hidden">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="gotham BEM-APPS self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-semibold"
+            className="gotham BEM-APPS self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-normal"
           >
             BEM APPS
           </button>
           {isDropdownOpen && (
             <div className="absolute top-full left-0 mt-2 w-44 bg-white rounded shadow-lg z-50">
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">BEM OFFICIAL</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">ILKOM NEWS</a>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">E-MAGAZINE</a>
+              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">BEM OFFICIAL</a>
+              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">ILKOM NEWS</a>
+              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">E-MAGAZINE</a>
             </div>
           )}
         </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
 
       {/* Hamburger Menu */}
       <div className="lg:hidden flex right-0 self-center">
-        <p onClick={toggleNav} className="icons mr-4 right-0 hover-text text-base self-center font-medium cursor-pointer">
+        <p onClick={toggleNav} className="icons gotham mr-4 right-0 hover-text text-base self-center font-medium cursor-pointer">
           &#9776;
         </p>
       </div>
@@ -100,9 +100,9 @@ const Navbar = () => {
             </button>
             {isDropdownMobileOpen && (
               <div className="ml-16 mb-2  items-center self-center text-sm space-y-2">
-                <a href="#" className="block hover:text-blue-500">BEM OFFICIAL</a>
-                <a href="#" className="block hover:text-blue-500">ILKOM NEWS</a>
-                <a href="#" className="block hover:text-blue-500">E-MAGAZINE</a>
+                <a href="#" className="block gotham hover:text-blue-500">BEM OFFICIAL</a>
+                <a href="#" className="block gotham hover:text-blue-500">ILKOM NEWS</a>
+                <a href="#" className="block gotham hover:text-blue-500">E-MAGAZINE</a>
               </div>
             )}
           </div>

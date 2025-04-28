@@ -60,8 +60,8 @@ function LaporanKinerjaDosen() {
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
-      <h1 style={{ fontSize: "24px", fontWeight: "600" }}>Aspirasi Kinerja Dosen</h1>
-      <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#555" }}>
+      <h1 style={{ fontSize: "32px", fontWeight: "600", fontFamily: "Gotham, sans-serif", color: "#000000", marginBottom: "16px" }}>Aspirasi Kinerja Dosen</h1>
+      <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#3E3E3E", fontFamily: "Gotham, sans-serif" }}>
         Sampaikan aspirasi Anda terkait dosen dengan mengisi form berikut secara objektif dan bijaksana.
       </p>
 
@@ -75,6 +75,7 @@ function LaporanKinerjaDosen() {
           textAlign: "left",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           backgroundColor: "#fff",
+          fontFamily: "Gotham, sans-serif"
         }}
       >
         {[ 

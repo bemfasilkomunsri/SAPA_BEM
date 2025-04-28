@@ -21,8 +21,8 @@ const Navbar = () => {
           <div className="flex">
             <img src={logo} className="w-20" />
             <div className="self-center ml-4">
-              <h1 className="text-xl decorativeBold">Arta Darma</h1>
-              <p>BEM KM FASILKOM UNSRI</p>
+            <h1 className="text-xl cinzel">Artha Darma</h1>
+              <p className="cinzelbae">BEM KM FASILKOM UNSRI</p>
             </div>
           </div>
         </a>

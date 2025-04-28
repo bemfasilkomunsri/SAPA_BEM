@@ -44,7 +44,7 @@ const Home = () => {
               Bersama GASPOL
             </h1>
             <p className=" max-w-[36rem] md:text-base text-sm mt-8">
-              Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa-
+              Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa
               arah laporkan melalui GASPOL, sebuah forum resmi yang memastikan
               setiap masukan didengar dan ditindaklanjuti demi terciptanya
               lingkungan yang lebih baik bagi Fasilkom UNSRI.

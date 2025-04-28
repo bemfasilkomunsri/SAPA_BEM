@@ -117,7 +117,7 @@ const KebijakanKampusList = () => {
             <th className="p-2 border">#</th>
             <th className="p-2 border">Judul Aspirasi</th>
             <th className="p-2 border">Nama Kebijakan</th>
-            <th className="p-2 border max-w-xs break-words">Isi Aspirasi</th>
+            <th className="p-2 border">Isi Aspirasi</th>
             <th className="p-2 border">Bukti</th>
             <th className="p-2 border">Aksi</th>
           </tr>

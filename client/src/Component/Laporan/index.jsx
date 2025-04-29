@@ -54,7 +54,9 @@ export default function ReportFormUI() {
 
   return (
     <Element name="laporan">
-      <div className="min-h-screen pt-[12rem] flex flex-col items-center justify-center p-6 bg-white">
+      <div
+        className="min-h-screen pt-[12rem] flex flex-col items-center justify-center p-6 bg-[url('/src/assets/Background/Form.svg')] bg-cover bg-center bg-no-repeat"
+      >
         <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-30 max-w-7xl">
           {/* Cards section */}
           <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-10">

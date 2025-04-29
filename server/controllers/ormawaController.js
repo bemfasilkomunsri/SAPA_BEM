@@ -8,38 +8,36 @@ exports.getOrmawa = async (req, res) => {
     res.json(results);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: err.message  });
+    res.status(500).json({ error: err.message });
   }
 };
 
 // POST laporan ormawa
 exports.postOrmawa = async (req, res) => {
-  const { Nama, NIM, Jurusan, Organisasi_yang_Dituju, Kritik_dan_Saran } = req.body;
-  
-  if (!Nama || !NIM || !Jurusan || !Organisasi_yang_Dituju || !Kritik_dan_Saran) {
+  const { Subjek_Aspirasi, Organisasi_yang_Dituju, Kritik_dan_Saran } = req.body;
+
+  if (!Subjek_Aspirasi || !Organisasi_yang_Dituju || !Kritik_dan_Saran) {
     return res.status(400).json({ message: "Mohon lengkapi semua kolom" });
   }
-  
+
   try {
     await db.query(
       `INSERT INTO ormawa 
-      (Nama, NIM, Jurusan, Organisasi_yang_Dituju, Kritik_dan_Saran)
-      VALUES (?, ?, ?, ?, ?)`,
+      (Subjek_Aspirasi, Organisasi_yang_Dituju, Kritik_dan_Saran)
+      VALUES (?, ?, ?)`,
       {
-        replacements: [ 
-          Nama || '', 
-          NIM || '', 
-          Jurusan || '', 
-          Organisasi_yang_Dituju || '', 
-          Kritik_dan_Saran || ''
+        replacements: [
+          Subjek_Aspirasi,
+          Organisasi_yang_Dituju,
+          Kritik_dan_Saran
         ],
         type: QueryTypes.INSERT,
         raw: true
       }
     );
-      res.json({ message: "Aspirasi Ormawa berhasil dikirim" });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: err.message });
+    res.json({ message: "Aspirasi Ormawa berhasil dikirim" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };

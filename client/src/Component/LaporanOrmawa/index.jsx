@@ -4,9 +4,7 @@ import "./style.css";
 function LaporanOrmawa() {
   const [laporan, setLaporan] = useState([]);
   const [formData, setFormData] = useState({
-    Nama: "",
-    NIM: "",
-    Jurusan: "",
+    Subjek_Aspirasi: "",
     Organisasi_yang_Dituju: "",
     Kritik_dan_Saran: "",
   });
@@ -33,8 +31,8 @@ function LaporanOrmawa() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.Nama || !formData.Kritik_dan_Saran) {
-      setErrorMessage("Nama dan Kritik/Saran wajib diisi.");
+    if (!formData.Subjek_Aspirasi || !formData.Kritik_dan_Saran) {
+      setErrorMessage("Subjek aspirasi dan kritik/saran wajib diisi.");
       return;
     }
 
@@ -49,9 +47,7 @@ function LaporanOrmawa() {
       .then((response) => {
         setSuccessMessage(response.message);
         setFormData({
-          Nama: "",
-          NIM: "",
-          Jurusan: "",
+          Subjek_Aspirasi: "",
           Organisasi_yang_Dituju: "",
           Kritik_dan_Saran: "",
         });
@@ -69,7 +65,7 @@ function LaporanOrmawa() {
 
   return (
     <div style={{ padding: "40px 20px", textAlign: "center" }}>
-      <h1 style={{ fontSize: "32px", fontWeight: "600", fontFamily: "Gotham, sans-serif", color: "#000000", marginBottom: "16px"  }}>
+      <h1 style={{ fontSize: "32px", fontWeight: "600", fontFamily: "Gotham, sans-serif", color: "#000000", marginBottom: "16px" }}>
         Aspirasi Organisasi Mahasiswa
       </h1>
       <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#3E3E3E", fontFamily: "Gotham, sans-serif" }}>
@@ -89,10 +85,8 @@ function LaporanOrmawa() {
           fontFamily: "Gotham, sans-serif"
         }}
       >
-        {[ 
-          { label: "Nama", name: "Nama", type: "text" },
-          { label: "NIM", name: "NIM", type: "text" },
-          { label: "Jurusan", name: "Jurusan", type: "text" },
+        {[
+          { label: "Subjek Aspirasi", name: "Subjek_Aspirasi", type: "text" },
           { label: "Organisasi yang Dituju", name: "Organisasi_yang_Dituju", type: "text" }
         ].map(({ label, name, type }) => (
           <div key={name} style={{ marginBottom: "20px" }}>
@@ -143,13 +137,13 @@ function LaporanOrmawa() {
 
         {errorMessage && (
           <div className="alert error">
-              {errorMessage}
+            {errorMessage}
           </div>
         )}
 
         {successMessage && (
           <div className="alert success">
-              {successMessage}
+            {successMessage}
           </div>
         )}
       </form>

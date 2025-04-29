@@ -89,8 +89,8 @@ const Navbar = () => {
           <div className="flex">
             <img src={logo} className="w-20" />
             <div className="self-center ml-4">
-              <h1 className="text-3xl cinzel">Artha Darma</h1>
-              <p className="cinzelbae text-2xl">BEM KM FASILKOM UNSRI</p>
+            <h1 className="text-2xl cinzel">Gerakan Aspirasi Online</h1>
+              <p className="cinzelbae text-xl">BEM KM FASILKOM UNSRI</p>
             </div>
           </div>
         </Link>

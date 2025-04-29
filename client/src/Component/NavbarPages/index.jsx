@@ -11,18 +11,18 @@ const Navbar = () => {
     setIsMenu(!isMenu);
   };
   return (
-    <nav className="navbar justify-between flex p-3 top-0 fixed w-full ">
+    <nav className="navbar justify-between flex p-5 px-35 fixed top-0 w-full bg-white z-50 transition-shadow duration-300 ">
       {/* Logo */}
-      <div>
+      <div className="flex items-center h-20">
         <a
           href="/"
-          className="my-6 self-center text-gradient items-center ease-in-out duration-300 cursor-pointer text-sm font-semibold ml-3 lg:inline"
+          className="my-6 gotham self-center text-gradient items-center ease-in-out duration-300 cursor-pointer text-sm font-semibold ml-3 lg:inline"
         >
           <div className="flex">
             <img src={logo} className="w-20" />
             <div className="self-center ml-4">
-            <h1 className="text-xl cinzel">Artha Darma</h1>
-              <p className="cinzelbae">BEM KM FASILKOM UNSRI</p>
+            <h1 className="text-2xl cinzel">Gerakan Aspirasi Online</h1>
+              <p className="cinzelbae text-xl">BEM KM FASILKOM UNSRI</p>
             </div>
           </div>
         </a>
@@ -31,27 +31,27 @@ const Navbar = () => {
       <div className="navbar-nav flex">
         <a
           href="/"
-          className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-12 lg:inline hidden"
+          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden"
         >
           Beranda
         </a>
         <a
           href="/"
-          className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-12 lg:inline hidden"
+          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden"
         >
           Tentang Kami
         </a>
 
         <a
           href="/"
-          className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-12 lg:inline hidden"
+          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx- lg:inline hidden"
         >
           Lapor
         </a>
 
         <a
           href="/"
-          className="my-6 self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-medium mx-12 lg:inline hidden"
+          className="my-6 gotham self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-normal mx-12 lg:inline hidden"
         >
           BEM APPS
         </a>
@@ -89,27 +89,27 @@ const Navbar = () => {
           {/* Sidebar as */}
           <a
             href="/"
-            className="my-6 mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
+            className="my-6 gotham mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
           >
             Beranda
           </a>
           <a
             href="/"
-            className="my-6 mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
+            className="my-6 gotham mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
           >
             Tentang Kami
           </a>
 
           <a
             href="/"
-            className="my-6 mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
+            className="my-6 gotham mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
           >
             Lapor
           </a>
 
           <a
             href="/"
-            className="my-6 mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
+            className="my-6 gotham mx-auto self-center items-center hover-text ease-in-out duration-300 cursor-pointer"
           >
             BEM Apps
           </a>

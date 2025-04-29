@@ -1,3 +1,12 @@
+.home {
+  background-image: url('../../assets/Background/Home.svg'); /* Ganti dengan path gambar kamu */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
 .home .text {
   color: #030303;
 }
@@ -10,49 +19,7 @@
   background-color: #FFEBBC;
 }
 
-.home {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.home::before,
-.home::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.3;
-  filter: blur(60px);
-  z-index: 0;
-}
-
-.home::before {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, #ffa500, #ffffff00);
-  top: 10%;
-  left: 5%;
-}
-
-.home::after {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, #4da6ff, #ffffff00);
-  bottom: 10%;
-  right: 5%;
-}
-
 /* Optional: efek smooth fade-up */
-.fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.fade-up-animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .fade-up {
   opacity: 0;
   transform: translateY(-40px);

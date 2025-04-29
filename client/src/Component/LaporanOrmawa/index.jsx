@@ -64,7 +64,10 @@ function LaporanOrmawa() {
   };
 
   return (
-    <div style={{ padding: "40px 20px", textAlign: "center" }}>
+    <div
+      style={{ padding: "40px 20px", textAlign: "center" }}
+      className="min-h-screen bg-[url('/src/assets/Background/DetailForm.svg')] bg-cover bg-center bg-no-repeat"
+    >
       <h1 style={{ fontSize: "32px", fontWeight: "600", fontFamily: "Gotham, sans-serif", color: "#000000", marginBottom: "16px" }}>
         Aspirasi Organisasi Mahasiswa
       </h1>

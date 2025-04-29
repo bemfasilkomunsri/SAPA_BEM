@@ -118,9 +118,30 @@ const Navbar = () => {
           </button>
           {isDropdownOpen && (
             <div className={`absolute top-full left-0 mt-2 w-44 bg-white rounded shadow-lg z-50 transition-all duration-300 ${animateDropdown ? "animate-fadeIn" : "animate-fadeOut"}`}>
-              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">BEM OFFICIAL</a>
-              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">ILKOM NEWS</a>
-              <a href="#" className="block gotham px-4 py-2 hover:bg-gray-100 text-sm">E-MAGAZINE</a>
+              <a
+                href="https://bemilkomunsri.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                BEM OFFICIAL
+              </a>
+              <a
+                href="https://ilkomnews.bemilkomunsri.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                ILKOM NEWS
+              </a>
+              <a
+                href="https://bemilkomunsri.org/majalah"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                E-MAGAZINE
+              </a>
             </div>
           )}
         </div>

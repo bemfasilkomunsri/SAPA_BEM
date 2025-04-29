@@ -6,10 +6,17 @@ import logo from "../../assets/Logo/Logo-BEM.png";
 
 const Navbar = () => {
   const [isMenu, setIsMenu] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleNav = () => {
     setIsMenu(!isMenu);
+    setIsDropdownOpen(false);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <nav className="navbar justify-between flex p-5 px-35 fixed top-0 w-full bg-white z-50 transition-shadow duration-300 ">
       {/* Logo */}
@@ -27,35 +34,57 @@ const Navbar = () => {
           </div>
         </a>
       </div>
-      {/* Normal Navbar */}
-      <div className="navbar-nav flex">
-        <a
-          href="/"
-          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden"
-        >
+     {/* Normal Navbar */}
+     <div className="navbar-nav flex">
+        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Beranda
         </a>
-        <a
-          href="/"
-          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden"
-        >
+        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Tentang Kami
         </a>
-
-        <a
-          href="/"
-          className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx- lg:inline hidden"
-        >
+        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Lapor
         </a>
 
-        <a
-          href="/"
-          className="my-6 gotham self-center text items-center ease-in-out duration-300 cursor-pointer text-lg font-normal mx-12 lg:inline hidden"
-        >
-          BEM APPS
-        </a>
+        {/* Dropdown */}
+        <div className="relative mx-6 my-6 self-center lg:inline hidden">
+          <button
+            onClick={toggleDropdown}
+            className="text-lg font-normal cursor-pointer hover-text"
+          >
+            BEM APPS ▾
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute top-full left-0 mt-2 w-44 bg-white rounded shadow-lg z-50">
+              <a
+                href="https://bemilkomunsri.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                BEM OFFICIAL
+              </a>
+              <a
+                href="https://ilkomnews.bemilkomunsri.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                ILKOM NEWS
+              </a>
+              <a
+                href="https://bemilkomunsri.org/majalah"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block gotham px-4 py-2 hover:bg-gray-100 text-sm"
+              >
+                E-MAGAZINE
+              </a>
+            </div>
+          )}
+        </div>
       </div>
+
 
       {/* Hamburger Menu */}
       <div className="lg:hidden flex right-0 self-center">

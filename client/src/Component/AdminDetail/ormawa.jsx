@@ -3,13 +3,13 @@ import axios from 'axios';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrmawaList = () => {
   const [laporan, setLaporan] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);  // State untuk loading
+  const [loading, setLoading] = useState(true);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -22,16 +22,16 @@ const OrmawaList = () => {
       setLaporan(res.data);
     } catch (err) {
       console.error('Gagal memuat data', err);
-      toast.error('Gagal memuat data, coba lagi nanti!');  // Menampilkan toast error
+      toast.error('Gagal memuat data, coba lagi nanti!');
     } finally {
-      setLoading(false);  // Selesai loading
+      setLoading(false);
     }
   };
 
   const exportToExcel = () => {
     const mappedData = laporan.map((item, index) => ({
       "No": index + 1,
-      "Jurusan": item.Jurusan,
+      "Subjek Aspirasi": item.Subjek_Aspirasi,
       "Organisasi yang dituju": item.Organisasi_yang_Dituju,
       "Kritik dan Saran": item.Kritik_dan_Saran,
     }));
@@ -46,17 +46,15 @@ const OrmawaList = () => {
     saveAs(fileData, "laporan_ormawa.xlsx");
   };
 
-  // Search
   const filteredLaporan = laporan.filter((item) => {
     const query = searchQuery.toLowerCase();
     return (
-      item.Jurusan.toLowerCase().includes(query) ||
-      item.Organisasi_yang_Dituju.toLowerCase().includes(query) ||
-      item.Kritik_dan_Saran.toLowerCase().includes(query)
+      (item.Subjek_Aspirasi && item.Subjek_Aspirasi.toLowerCase().includes(query)) ||
+      (item.Organisasi_yang_Dituju && item.Organisasi_yang_Dituju.toLowerCase().includes(query)) ||
+      (item.Kritik_dan_Saran && item.Kritik_dan_Saran.toLowerCase().includes(query))
     );
   });
 
-  // Pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredLaporan.slice(indexOfFirstItem, indexOfLastItem);
@@ -74,11 +72,10 @@ const OrmawaList = () => {
     <div className="p-6 pt-28">
       <h1 className="text-2xl font-bold mb-4">Laporan Ormawa</h1>
 
-      {/* Search dan Export */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <input
           type="text"
-          placeholder="Cari berdasarkan jurusan, organisasi, atau kritik..."
+          placeholder="Cari berdasarkan subjek, organisasi, atau kritik..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="border p-2 rounded w-full md:w-1/2"
@@ -91,7 +88,6 @@ const OrmawaList = () => {
         </button>
       </div>
 
-      {/* Loading Spinner */}
       {loading ? (
         <div className="flex justify-center py-10">
           <div className="animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
@@ -101,7 +97,7 @@ const OrmawaList = () => {
           <thead>
             <tr className="bg-gray-200 text-left">
               <th className="p-2 border">#</th>
-              <th className="p-2 border">Jurusan</th>
+              <th className="p-2 border">Subjek Aspirasi</th>
               <th className="p-2 border">Organisasi yang dituju</th>
               <th className="p-2 border">Kritik dan Saran</th>
             </tr>
@@ -110,7 +106,7 @@ const OrmawaList = () => {
             {currentItems.map((item, index) => (
               <tr key={item.id}>
                 <td className="p-2 border">{indexOfFirstItem + index + 1}</td>
-                <td className="p-2 border">{item.Jurusan}</td>
+                <td className="p-2 border">{item.Subjek_Aspirasi}</td>
                 <td className="p-2 border">{item.Organisasi_yang_Dituju}</td>
                 <td className="p-2 border">{item.Kritik_dan_Saran}</td>
               </tr>
@@ -126,7 +122,6 @@ const OrmawaList = () => {
         </table>
       )}
 
-      {/* Pagination */}
       <div className="flex justify-between items-center mt-4">
         <button
           onClick={goToPrevPage}
@@ -151,8 +146,7 @@ const OrmawaList = () => {
         </button>
       </div>
 
-      {/* Toast Notification */}
-      <ToastContainer />  {/* Tempat untuk toast */}
+      <ToastContainer />
     </div>
   );
 };

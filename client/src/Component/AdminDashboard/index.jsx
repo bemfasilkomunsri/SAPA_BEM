@@ -8,6 +8,7 @@ const Admin = () => {
     ormawa: 0,
     fasilitas: 0,
     kebijakan: 0,
+    seminar: 0,
   });
 
   const navigate = useNavigate();
@@ -18,11 +19,12 @@ const Admin = () => {
 
   const fetchCounts = async () => {
     try {
-      const [res1, res2, res3, res4] = await Promise.all([
+      const [res1, res2, res3, res4, res5] = await Promise.all([
         axios.get(`${import.meta.env.VITE_API_URL}/kinerja_dosen`),
         axios.get(`${import.meta.env.VITE_API_URL}/ormawa`),
         axios.get(`${import.meta.env.VITE_API_URL}/kerusakan_fasilitas`),
         axios.get(`${import.meta.env.VITE_API_URL}/kebijakan_kampus`),
+        axios.get(`${import.meta.env.VITE_API_URL}/pengajuan_seminar`),
       ]);
 
       setData({
@@ -30,6 +32,7 @@ const Admin = () => {
         ormawa: res2.data.length,
         fasilitas: res3.data.length,
         kebijakan: res4.data.length,
+        seminar: res5.data.length,
       });
     } catch (err) {
       console.error('Gagal mengambil data dashboard', err);
@@ -59,7 +62,7 @@ const Admin = () => {
         />
         <Card
           title="Pengajuan Seminar"
-          count={data.ormawa}
+          count={data.seminar}
           color="bg-green-600"
           link="/admin/pengajuan-seminar"
         />

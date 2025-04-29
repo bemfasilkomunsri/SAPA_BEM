@@ -42,7 +42,7 @@ const Admin = () => {
 
   const Card = ({ title, count, color, textColor, buttonColor, link }) => (
     <div
-      className={`w-full max-w-sm rounded-2xl p-8 ${color} shadow-md cursor-pointer transition-all`}
+      className={`w-full max-w-sm rounded-2xl p-8 ${color} shadow-md cursor-pointer transition-transform duration-300 hover:scale-105`}
       onClick={() => navigate(link)}
     >
       <h2 className={`text-xl font-bold ${textColor} mb-2`}>{title}</h2>

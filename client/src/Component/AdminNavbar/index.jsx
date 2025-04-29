@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, reset } from '../../features/AuthSlice';
-import logo from "../../assets/Logo/Logo-BEM.png"; // pastikan path logo sudah benar
 
 // Komponen navbar
 export const AdminNavbar = () => {
@@ -24,7 +23,6 @@ export const AdminNavbar = () => {
           <div className="flex justify-between items-center h-18">
             {/* Logo dan Nama Website */}
             <div className="flex items-center transition-all duration-300 ease-in-out">
-              <img src={logo} className="w-20" />
               <div className="self-center ml-4">
                 <h1 className="text-xl cinzel">Admin Gaspol</h1>
                 <p className="cinzelbae">BEM KM FASILKOM UNSRI</p>
@@ -35,7 +33,7 @@ export const AdminNavbar = () => {
             <div className="flex items-center">
               <button 
                 onClick={logout}
-                className="rounded-lg bg-red-500 text-white px-4 py-2 transition-all ease-in-out duration-300 hover:bg-red-600 transform hover:scale-105"
+                className="rounded-lg bg-red-500 text-white px-4 py-2 transition-all ease-in-out duration-300 hover:bg-red-600 transform hover:scale-105 cursor-pointer"
               >
                 Log Out
               </button>

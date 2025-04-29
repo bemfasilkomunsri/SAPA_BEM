@@ -1,37 +1,42 @@
+// AdminKebijakanKampus.jsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from "../features/AuthSlice";
 import AdminDetail from "../Component/AdminDetail/kinerja_dosen";
 import AdminNavbar from "../Component/AdminNavbar";
-
+import AdminSidebar from '../Component/AdminSideBar';
 
 const AdminKinerjaDosen = () => {
-  // Dispatch dan Navigate dari React Router
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {isError} = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
   
   // Cek user login
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
   
-  // Kalo user tidak login, redirect ke page login
-  useEffect(()=>{
-    if(isError){
-        navigate("/admin");
+  // Redirect jika belum login
+  useEffect(() => {
+    if (isError) {
+      navigate("/admin");
     }
   }, [isError, navigate]);
 
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:p-0 p-0">
-      <div className="w-full ">
-        <AdminNavbar/>
-        <AdminDetail />
+    <div className="min-h-screen flex bg-gray-100">
+        <div className="flex-shrink-0">
+          <AdminSidebar />
+        </div>
+        <div className="flex-1 flex flex-col">
+          <AdminNavbar />
+        <main className="p-6 overflow-auto">
+          <AdminDetail />
+        </main>
       </div>
-    </main>
+    </div>
   );
 };
 
-export default AdminKinerjaDosen
+export default AdminKinerjaDosen;

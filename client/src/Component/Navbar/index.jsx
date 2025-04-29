@@ -77,9 +77,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar justify-between flex p-3 px-30 fixed top-0 w-full bg-white z-50 ${hasShadow ? "shadow-md" : "shadow-none"} transition-shadow duration-300`}>
+    <nav className={`navbar justify-between flex p-5 px-35 fixed top-0 w-full bg-white z-50 transition-shadow duration-300`}>
       {/* Logo */}
-      <div>
+      <div className="flex items-center h-20">
         <Link
           to="home"
           smooth={true}
@@ -89,8 +89,8 @@ const Navbar = () => {
           <div className="flex">
             <img src={logo} className="w-20" />
             <div className="self-center ml-4">
-              <h1 className="text-xl cinzel">Artha Darma</h1>
-              <p className="cinzelbae">BEM KM FASILKOM UNSRI</p>
+              <h1 className="text-3xl cinzel">Artha Darma</h1>
+              <p className="cinzelbae text-2xl">BEM KM FASILKOM UNSRI</p>
             </div>
           </div>
         </Link>

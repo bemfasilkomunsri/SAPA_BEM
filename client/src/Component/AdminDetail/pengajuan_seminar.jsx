@@ -97,33 +97,43 @@ const PengajuanSeminarList = () => {
           <div className="animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
         </div>
       ) : (
-        <table className="min-w-full border bg-white shadow rounded mb-4">
+        <table className="min-w-full bg-white shadow rounded-lg overflow-hidden mb-4">
           <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="p-2 border">#</th>
-              <th className="p-2 border">Jurusan</th>
-              <th className="p-2 border">Judul Seminar</th>
-              <th className="p-2 border">Deskripsi Seminar</th>
+            <tr className="bg-gray-100 border-b border-gray-200">
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Jurusan</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Judul Seminar</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Deskripsi Seminar</th>
             </tr>
           </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={item.id}>
-                <td className="p-2 border">{indexOfFirstItem + index + 1}</td>
-                <td className="p-2 border">{item.Jurusan}</td>
-                <td className="p-2 border">{item.Judul_Seminar}</td>
-                <td className="p-2 border">{item.Deskripsi_Seminar}</td>
+          <tbody className="divide-y divide-gray-200">
+            {currentItems.map((item, idx) => (
+              <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {indexOfFirstItem + idx + 1}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Jurusan}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Judul_Seminar}
+                </td>
+                <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                  {item.Deskripsi_Seminar}
+                </td>
               </tr>
             ))}
+
             {currentItems.length === 0 && (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">
+                <td colSpan="4" className="px-5 py-6 text-center text-sm text-gray-500">
                   Tidak ada laporan ditemukan.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+
       )}
 
       {/* Pagination */}

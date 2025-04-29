@@ -111,33 +111,41 @@ const KebijakanKampusList = () => {
         </select>
       </div>
 
-      <table className="min-w-full border bg-white shadow rounded mb-4">
+      <table className="min-w-full bg-white shadow rounded-lg overflow-hidden mb-4">
         <thead>
-          <tr className="bg-gray-200 text-left">
-            <th className="p-2 border">#</th>
-            <th className="p-2 border">Judul Aspirasi</th>
-            <th className="p-2 border">Nama Kebijakan</th>
-            <th className="p-2 border">Isi Aspirasi</th>
-            <th className="p-2 border">Bukti</th>
-            <th className="p-2 border">Aksi</th>
+          <tr className="bg-gray-100 border-b border-gray-200">
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Judul Aspirasi</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nama Kebijakan</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Bukti</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Aksi</th>
           </tr>
         </thead>
-        <tbody>
-          {currentItems.map((item, index) => (
-            <tr key={item.id}>
-              <td className="p-2 border">{indexOfFirstItem + index + 1}</td>
-              <td className="p-2 border">{item.judul_aspirasi}</td>
-              <td className="p-2 border">{item.nama_kebijakan}</td>
-              <td className="p-2 border">{item.isi_aspirasi}</td>
-              <td className="p-2 border">
+        <tbody className="divide-y divide-gray-200">
+          {currentItems.map((item, idx) => (
+            <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                {indexOfFirstItem + idx + 1}
+              </td>
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                {item.judul_aspirasi}
+              </td>
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                {item.nama_kebijakan}
+              </td>
+              <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                {item.isi_aspirasi}
+              </td>
+              <td className="px-5 py-4 text-sm text-gray-900">
                 {item.data_pendukung ? (
-                  item.data_pendukung.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                  /\.(jpe?g|png|gif)$/i.test(item.data_pendukung) ? (
                     <img
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                       alt="Bukti"
                       className="max-w-[150px] max-h-[150px] object-cover rounded"
                     />
-                  ) : item.data_pendukung.match(/\.pdf$/i) ? (
+                  ) : /\.pdf$/i.test(item.data_pendukung) ? (
                     <iframe
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                       className="w-32 h-32"
@@ -157,13 +165,12 @@ const KebijakanKampusList = () => {
                   <span className="text-gray-400 italic">Tidak ada bukti</span>
                 )}
               </td>
-
-              <td className="p-2 border flex gap-2">
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
                 {item.data_pendukung && (
                   <a
                     href={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                     download
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
                   >
                     Download Bukti
                   </a>
@@ -171,15 +178,17 @@ const KebijakanKampusList = () => {
               </td>
             </tr>
           ))}
+
           {currentItems.length === 0 && (
             <tr>
-              <td colSpan="6" className="text-center py-4 text-gray-500">
+              <td colSpan="6" className="px-5 py-6 text-center text-sm text-gray-500">
                 Tidak ada laporan ditemukan.
               </td>
             </tr>
           )}
         </tbody>
       </table>
+
 
       {/* Pagination Controls */}
       <div className="flex justify-between items-center mt-4">

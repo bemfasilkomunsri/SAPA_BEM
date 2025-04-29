@@ -101,37 +101,54 @@ const KinerjaDosenList = () => {
           <div className="animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
         </div>
       ) : (
-        <table className="min-w-full border bg-white shadow rounded mb-4">
+        <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="p-2 border">#</th>
-              <th className="p-2 border">Subjek Aspirasi</th>
-              <th className="p-2 border">Target Aspirasi</th>
-              <th className="p-2 border">Jurusan Dosen</th>
-              <th className="p-2 border">Matakuliah Dosen</th>
-              <th className="p-2 border max-w-xs break-words">Isi Aspirasi</th>
+            <tr className="bg-gray-100 border-b border-gray-200">
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Subjek Aspirasi</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Target Aspirasi</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Jurusan Dosen</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Matakuliah Dosen</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
             </tr>
           </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={item.id}>
-                <td className="p-2 border">{indexOfFirstItem + index + 1}</td>
-                <td className="p-2 border">{item.Subjek_Aspirasi}</td>
-                <td className="p-2 border">{item.Target_Aspirasi}</td>
-                <td className="p-2 border">{item.Jurusan_Dosen}</td>
-                <td className="p-2 border">{item.Matakuliah_Dosen}</td>
-                <td className="p-2 border">{item.Isi_Aspirasi}</td>
+          <tbody className="divide-y divide-gray-200">
+            {currentItems.map((item, idx) => (
+              <tr
+                key={item.id}
+                className="hover:bg-gray-50 transition-colors"
+              >
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {indexOfFirstItem + idx + 1}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Subjek_Aspirasi}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Target_Aspirasi}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Jurusan_Dosen}
+                </td>
+                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {item.Matakuliah_Dosen}
+                </td>
+                <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                  {item.Isi_Aspirasi}
+                </td>
               </tr>
             ))}
+
             {currentItems.length === 0 && (
               <tr>
-                <td colSpan="6" className="text-center py-4 text-gray-500">
+                <td colSpan="6" className="px-5 py-6 text-center text-sm text-gray-500">
                   Tidak ada laporan ditemukan.
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+
       )}
 
       {/* Pagination */}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "./style.css"
 
 const Admin = () => {
   const [data, setData] = useState({
@@ -39,53 +40,68 @@ const Admin = () => {
     }
   };
 
-  const Card = ({ title, count, color, link }) => (
+  const Card = ({ title, count, color, textColor, buttonColor, link }) => (
     <div
-      className={`rounded-xl p-6 text-white shadow-lg transition-all transform hover:scale-105 hover:shadow-xl ${color} hover:bg-opacity-90 cursor-pointer`}
+      className={`w-full max-w-sm rounded-2xl p-8 ${color} shadow-md cursor-pointer transition-all`}
       onClick={() => navigate(link)}
     >
-      <h2 className="text-lg font-semibold uppercase">{title}</h2>
-      <p className="text-4xl font-bold mt-2">{count}</p>
-      <p className="text-sm underline mt-2 opacity-80">Lihat Detail</p>
+      <h2 className={`text-xl font-bold ${textColor} mb-2`}>{title}</h2>
+      <p className="text-2xl font-bold text-[#4a0000]">{count} Data</p>
+      <button
+        className={`mt-4 px-4 py-2 rounded-md cursor-pointer text-white font-medium ${buttonColor}`}
+      >
+        Lihat Detail
+      </button>
     </div>
   );
+  
 
   return (
-    <div className="p-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-pink-50 min-h-screen pt-20">
-      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">Dashboard Admin GASPOL</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <Card
-          title="Kinerja Dosen"
-          count={data.kinerja}
-          color="bg-cyan-600"
-          link="/admin/kinerja-dosen"
-        />
-        <Card
-          title="Pengajuan Seminar"
-          count={data.seminar}
-          color="bg-green-600"
-          link="/admin/pengajuan-seminar"
-        />
-        <Card
-          title="Kerusakan Fasilitas"
-          count={data.fasilitas}
-          color="bg-red-600"
-          link="/admin/kerusakan-fasilitas"
-        />
-        <Card
-          title="Kebijakan Kampus"
-          count={data.kebijakan}
-          color="bg-yellow-600"
-          link="/admin/kebijakan-kampus"
-        />
-        <Card
-          title="Ormawa"
-          count={data.ormawa}
-          color="bg-gray-700"
-          link="/admin/ormawa"
-        />
-      </div>
+    <div className="px-6 sm:px-12 lg:px-32 py-8 bg-white min-h-screen pt-20">
+      <h1 className="text-3xl font-extrabold text-gray-800 mb-6 admin-dashboard">ADMIN DASHBOARD</h1>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Card
+        title="Kinerja Dosen"
+        count={data.kinerja}
+        color="bg-[#FFF4D6]"
+        textColor="text-[#F4B000]"
+        buttonColor="bg-[#F4B000]"
+        link="/admin/kinerja-dosen"
+      />
+      <Card
+        title="Pengajuan Seminar"
+        count={data.seminar}
+        color="bg-[#FCE8DA]"
+        textColor="text-[#DC7F5D]"
+        buttonColor="bg-[#DC7F5D]"
+        link="/admin/pengajuan-seminar"
+      />
+      <Card
+        title="Kerusakan Fasilitas"
+        count={data.fasilitas}
+        color="bg-[#FFF2CD]"
+        textColor="text-[#EBC75C]"
+        buttonColor="bg-[#EBC75C]"
+        link="/admin/kerusakan-fasilitas"
+      />
+      <Card
+        title="Kebijakan Kampus"
+        count={data.kebijakan}
+        color="bg-[#FCE8DA]"
+        textColor="text-[#DC7F5D]"
+        buttonColor="bg-[#DC7F5D]"
+        link="/admin/kebijakan-kampus"
+      />
+      <Card
+        title="Ormawa"
+        count={data.ormawa}
+        color="bg-[#FFF4D6]"
+        textColor="text-[#F4B000]"
+        buttonColor="bg-[#F4B000]"
+        link="/admin/ormawa"
+      />
     </div>
+  </div>  
   );
 };
 

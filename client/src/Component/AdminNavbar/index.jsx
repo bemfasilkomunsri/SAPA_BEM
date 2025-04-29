@@ -26,7 +26,7 @@ export const AdminNavbar = () => {
             <div className="flex items-center transition-all duration-300 ease-in-out">
               <img src={logo} className="w-20" />
               <div className="self-center ml-4">
-                <h1 className="text-xl cinzel">Gerakan Aspirasi Online</h1>
+                <h1 className="text-xl cinzel">Admin Gaspol</h1>
                 <p className="cinzelbae">BEM KM FASILKOM UNSRI</p>
               </div>
             </div>

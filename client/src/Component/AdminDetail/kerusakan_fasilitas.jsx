@@ -98,31 +98,37 @@ const KerusakanFasilitasList = () => {
         </select>
       </div>
 
-      <table className="min-w-full border bg-white shadow rounded mb-4">
+      <table className="min-w-full bg-white shadow rounded-lg overflow-hidden mb-4">
         <thead>
-          <tr className="bg-gray-200 text-left">
-            <th className="p-2 border">#</th>
-            <th className="p-2 border">Fasilitas Yang Rusak</th>
-            <th className="p-2 border max-w-xs break-words">Deskripsi Kerusakan</th>
-            <th className="p-2 border">Bukti</th>
-            <th className="p-2 border">Aksi</th>
+          <tr className="bg-gray-100 border-b border-gray-200">
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Fasilitas yang Rusak</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Deskripsi Kerusakan</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Bukti</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Aksi</th>
           </tr>
         </thead>
-        <tbody>
-          {currentItems.map((item, index) => (
-            <tr key={item.id}>
-              <td className="p-2 border">{indexOfFirstItem + index + 1}</td>
-              <td className="p-2 border">{item.fasilitas_yang_rusak}</td>
-              <td className="p-2 border">{item.deskripsi_kerusakan}</td>
-              <td className="p-2 border">
+        <tbody className="divide-y divide-gray-200">
+          {currentItems.map((item, idx) => (
+            <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                {indexOfFirstItem + idx + 1}
+              </td>
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                {item.fasilitas_yang_rusak}
+              </td>
+              <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                {item.deskripsi_kerusakan}
+              </td>
+              <td className="px-5 py-4 text-sm text-gray-900">
                 {item.berkas ? (
-                  item.berkas.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                  /\.(jpe?g|png|gif)$/i.test(item.berkas) ? (
                     <img
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.berkas}`}
                       alt="Bukti"
                       className="max-w-[150px] max-h-[150px] object-cover rounded"
                     />
-                  ) : item.berkas.match(/\.pdf$/i) ? (
+                  ) : /\.pdf$/i.test(item.berkas) ? (
                     <iframe
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.berkas}`}
                       className="w-32 h-32"
@@ -142,26 +148,28 @@ const KerusakanFasilitasList = () => {
                   <span className="text-gray-400 italic">Tidak ada bukti</span>
                 )}
               </td>
-              <td className="p-2 border flex gap-2">
+              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
                 <a
                   href={`${import.meta.env.VITE_API_URL}/uploads/${item.berkas}`}
                   download
-                  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
                 >
                   Download Bukti
                 </a>
               </td>
             </tr>
           ))}
+
           {currentItems.length === 0 && (
             <tr>
-              <td colSpan="5" className="text-center py-4 text-gray-500">
+              <td colSpan="5" className="px-5 py-6 text-center text-sm text-gray-500">
                 Tidak ada laporan ditemukan.
               </td>
             </tr>
           )}
         </tbody>
       </table>
+
 
       {/* Pagination Controls */}
       <div className="flex justify-between items-center mt-4">

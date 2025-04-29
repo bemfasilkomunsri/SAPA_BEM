@@ -20,3 +20,54 @@
   .about-us {
     color: #4A0000 !important;
   }
+  
+  .about {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #fdfdfd 100%);
+    overflow: hidden;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  .about::before,
+  .about::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(80px);
+    z-index: 0;
+  }
+  
+  .about::before,
+  .about::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  .about::before {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #ffa500, #ffffff00);
+    top: 35%;
+    left: -100px; /* agak ke kiri tengah */
+    animation: floatCircle1 16s ease-in-out infinite;
+  }
+
+  .about::after {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #4da6ff, #ffffff00);
+    top: 35%;
+    right: -100px; /* agak ke kanan tengah */
+    animation: floatCircle2 18s ease-in-out infinite;
+  }
+  
+  .about > * {
+    position: relative;
+    z-index: 2;
+  }  

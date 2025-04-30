@@ -36,18 +36,18 @@ const Navbar = () => {
       </div>
      {/* Normal Navbar */}
      <div className="navbar-nav flex">
-        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
+        <a href="/" className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Beranda
         </a>
-        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
+        <a href="/" className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Tentang Kami
         </a>
-        <a href="/" className="my-6 self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
+        <a href="/" className="my-6 gotham self-center items-center hover-text ease-in-out duration-300 cursor-pointer text-base font-normal mx-6 lg:inline hidden">
           Lapor
         </a>
 
         {/* Dropdown */}
-        <div className="relative mx-6 my-6 self-center lg:inline hidden">
+        <div className="relative gotham mx-6 my-6 self-center lg:inline hidden">
           <button
             onClick={toggleDropdown}
             className="text-lg font-normal cursor-pointer hover-text"
@@ -90,7 +90,7 @@ const Navbar = () => {
       <div className="lg:hidden flex right-0 self-center">
         <p
           onClick={toggleNav}
-          className="icons mr-4 right-0 hover-text text-base self-center font-medium cursor-pointer"
+          className="icons gotham mr-4 right-0 hover-text text-base self-center font-medium cursor-pointer"
         >
           {" "}
           &#9776;{" "}
@@ -106,12 +106,12 @@ const Navbar = () => {
         <div className="right-0 flex flex-col items-center space-y-8 mt-10 min-h-screen bg-white">
           {/* Close Button */}
           <div
-            className="right-0 close-btn cursor-pointer text-right p-4 text-lg"
+            className="right-0 gotham close-btn cursor-pointer text-right p-4 text-lg"
             onClick={toggleNav}
           >
             <CiMenuBurger
               onClick={toggleNav}
-              className="icon mx-[4.5rem] mt-3 hover-text w-6 h-6 cursor-pointer"
+              className="icon mx-[4.5rem] mt-3 gotham hover-text w-6 h-6 cursor-pointer"
             />
           </div>
 

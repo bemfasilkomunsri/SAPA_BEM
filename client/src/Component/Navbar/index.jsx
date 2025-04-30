@@ -87,10 +87,10 @@ const Navbar = () => {
           className="my-6 gotham self-center text-gradient items-center ease-in-out duration-300 cursor-pointer text-sm font-semibold ml-3 lg:inline"
         >
           <div className="flex">
-            <img src={logo} className="w-20" />
+            <img src={logo} className="w-16 md:w-20" />
             <div className="self-center ml-4">
-            <h1 className="text-2xl cinzel">Gerakan Aspirasi Online</h1>
-              <p className="cinzelbae text-xl">BEM KM FASILKOM UNSRI</p>
+            <h1 className="text-md cinzel md:text-2xl">Gerakan Aspirasi Online</h1>
+              <p className="cinzelbae text-sm md:text-xl">BEM KM FASILKOM UNSRI</p>
             </div>
           </div>
         </Link>
@@ -182,7 +182,7 @@ const Navbar = () => {
             {isDropdownMobileOpen && (
               <div className={`ml-16 mb-2 items-center self-center text-sm space-y-2 transition-all duration-300 ${animateDropdownMobile ? "animate-fadeIn" : "animate-fadeOut"}`}>
                 <a href="#" className="block gotham hover:text-blue-500">BEM OFFICIAL</a>
-                <a href="#" className="block gotham hover:text-blue-500">ILKOM NEWS</a>
+                <a href="https://ilkomnews.bemilkomunsri.org/" className="block gotham hover:text-blue-500">ILKOM NEWS</a>
                 <a href="#" className="block gotham hover:text-blue-500">E-MAGAZINE</a>
               </div>
             )}

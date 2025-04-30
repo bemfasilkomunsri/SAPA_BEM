@@ -24,10 +24,10 @@ export const AdminNavbar = () => {
           <div className="flex justify-between items-center h-18">
             {/* Logo dan Nama Website */}
               <div className="flex items-center transition-all duration-300 ease-in-out">
-                <img src={logo} className="w-20" />
-                  <div className="self-center ml-4">
-                    <h1 className="text-2xl cinzel text-[#bb0001]">Admin Gaspol</h1>
-                    <p className="cinzelbae text-xl text-[#bb0001]">BEM KM FASILKOM UNSRI</p>
+                <img src={logo} className=" w-14 md:w-20" />
+                  <div className="self-center ml-1 md:ml-4">
+                    <h1 className="md:text-2xl text-md cinzel text-[#bb0001]">Admin Gaspol</h1>
+                    <p className="cinzelbae md:text-xl text-sm text-[#bb0001]">BEM KM FASILKOM UNSRI</p>
                   </div>
               </div>
 
@@ -35,7 +35,7 @@ export const AdminNavbar = () => {
             <div className="flex items-center">
               <button 
                 onClick={logout}
-                className="rounded-lg gotham font-medium bg-gray-100 text-red-950 px-6 py-4 transition-all ease-in-out duration-300 transform hover:scale-105 cursor-pointer"
+                className="rounded-lg gotham font-medium text-sm md:text-xl bg-gray-100 text-red-950 md:px-6 md:py-4  px-3 py-3  transition-all ease-in-out duration-300 transform hover:scale-105 cursor-pointer"
               >
                 Log Out
               </button>

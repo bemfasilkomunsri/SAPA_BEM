@@ -76,7 +76,7 @@ const KinerjaDosenList = () => {
 
   return (
     <div className="p-6 pt-28">
-      <h1 className="text-2xl font-bold mb-4">Laporan Kinerja Dosen</h1>
+      <h1 className="text-2xl gotham text-black font-bold mb-4">Laporan Kinerja Dosen</h1>
 
       {/* Search dan Export */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -85,11 +85,11 @@ const KinerjaDosenList = () => {
           placeholder="Cari berdasarkan subjek, target, jurusan dosen..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/2"
+          className="border p-2 gotham rounded w-full md:w-1/2"
         />
         <button
           onClick={exportToExcel}
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded w-full md:w-auto"
+          className="bg-green-500 gotham hover:bg-green-600 text-white px-4 py-2 rounded w-full md:w-auto"
         >
           Download Semua ke Excel
         </button>
@@ -98,18 +98,18 @@ const KinerjaDosenList = () => {
       {/* Loading Spinner */}
       {loading ? (
         <div className="flex justify-center py-10">
-          <div className="animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
+          <div className="animate-spin border-t-4 border-blue-500 gotham rounded-full w-16 h-16"></div>
         </div>
       ) : (
         <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-100 border-b border-gray-200">
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Subjek Aspirasi</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Target Aspirasi</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Jurusan Dosen</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Matakuliah Dosen</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">#</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Subjek Aspirasi</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Target Aspirasi</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Jurusan Dosen</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Matakuliah Dosen</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -118,22 +118,22 @@ const KinerjaDosenList = () => {
                 key={item.id}
                 className="hover:bg-gray-50 transition-colors"
               >
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {indexOfFirstItem + idx + 1}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Subjek_Aspirasi}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Target_Aspirasi}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Jurusan_Dosen}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Matakuliah_Dosen}
                 </td>
-                <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                <td className="px-5 py-4 gotham text-sm text-gray-900 max-w-xs whitespace-normal break-words">
                   {item.Isi_Aspirasi}
                 </td>
               </tr>
@@ -141,7 +141,7 @@ const KinerjaDosenList = () => {
 
             {currentItems.length === 0 && (
               <tr>
-                <td colSpan="6" className="px-5 py-6 text-center text-sm text-gray-500">
+                <td colSpan="6" className="px-5 py-6 gotham text-center text-sm text-gray-500">
                   Tidak ada laporan ditemukan.
                 </td>
               </tr>
@@ -156,19 +156,19 @@ const KinerjaDosenList = () => {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 gotham rounded ${
             currentPage === 1 ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
           Sebelumnya
         </button>
-        <span>
+        <span className="gotham">
           Halaman {currentPage} dari {totalPages}
         </span>
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 gotham rounded ${
             currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >

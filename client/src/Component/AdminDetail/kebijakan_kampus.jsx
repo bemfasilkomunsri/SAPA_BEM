@@ -89,7 +89,7 @@ const KebijakanKampusList = () => {
 
   return (
     <div className="p-6 pt-28">
-      <h1 className="text-2xl font-bold mb-4">Laporan Kebijakan Kampus</h1>
+      <h1 className="text-2xl gotham text-black font-bold mb-4">Laporan Kebijakan Kampus</h1>
 
       {/* Search dan Filter */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -98,12 +98,12 @@ const KebijakanKampusList = () => {
           placeholder="Cari berdasarkan judul, nama kebijakan, isi aspirasi..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/2"
+          className="border p-2 gotham rounded w-full md:w-1/2"
         />
         <select
           value={filterBukti}
           onChange={(e) => setFilterBukti(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/4"
+          className="border p-2 gotham rounded w-full md:w-1/4"
         >
           <option value="all">Semua</option>
           <option value="with">Dengan Bukti</option>
@@ -114,41 +114,41 @@ const KebijakanKampusList = () => {
       <table className="min-w-full bg-white shadow rounded-lg overflow-hidden mb-4">
         <thead>
           <tr className="bg-gray-100 border-b border-gray-200">
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Judul Aspirasi</th>
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nama Kebijakan</th>
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Bukti</th>
-            <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Aksi</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">#</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Judul Aspirasi</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Nama Kebijakan</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider max-w-xs">Isi Aspirasi</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Bukti</th>
+            <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Aksi</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
           {currentItems.map((item, idx) => (
             <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                 {indexOfFirstItem + idx + 1}
               </td>
-              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                 {item.judul_aspirasi}
               </td>
-              <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                 {item.nama_kebijakan}
               </td>
-              <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+              <td className="px-5 py-4 gotham text-sm text-gray-900 max-w-xs whitespace-normal break-words">
                 {item.isi_aspirasi}
               </td>
-              <td className="px-5 py-4 text-sm text-gray-900">
+              <td className="px-5 py-4 gotham text-sm text-gray-900">
                 {item.data_pendukung ? (
                   /\.(jpe?g|png|gif)$/i.test(item.data_pendukung) ? (
                     <img
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                       alt="Bukti"
-                      className="max-w-[150px] max-h-[150px] object-cover rounded"
+                      className="max-w-[150px] max-h-[150px] object-cover gotham rounded"
                     />
                   ) : /\.pdf$/i.test(item.data_pendukung) ? (
                     <iframe
                       src={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
-                      className="w-32 h-32"
+                      className="w-32 h-32 gotham"
                       title="Bukti PDF"
                     ></iframe>
                   ) : (
@@ -156,13 +156,13 @@ const KebijakanKampusList = () => {
                       href={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 underline"
+                      className="text-blue-600 gotham underline"
                     >
                       Lihat Bukti
                     </a>
                   )
                 ) : (
-                  <span className="text-gray-400 italic">Tidak ada bukti</span>
+                  <span className="text-gray-400 gotham italic">Tidak ada bukti</span>
                 )}
               </td>
               <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -170,7 +170,7 @@ const KebijakanKampusList = () => {
                   <a
                     href={`${import.meta.env.VITE_API_URL}/uploads/${item.data_pendukung}`}
                     download
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
+                    className="bg-blue-500 gotham text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
                   >
                     Download Bukti
                   </a>
@@ -181,7 +181,7 @@ const KebijakanKampusList = () => {
 
           {currentItems.length === 0 && (
             <tr>
-              <td colSpan="6" className="px-5 py-6 text-center text-sm text-gray-500">
+              <td colSpan="6" className="px-5 py-6 text-center gotham text-sm text-gray-500">
                 Tidak ada laporan ditemukan.
               </td>
             </tr>
@@ -195,19 +195,19 @@ const KebijakanKampusList = () => {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 gotham rounded ${
             currentPage === 1 ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
           Sebelumnya
         </button>
-        <span>
+        <span className="gotham">
           Halaman {currentPage} dari {totalPages}
         </span>
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 gotham rounded ${
             currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
@@ -219,7 +219,7 @@ const KebijakanKampusList = () => {
       <div className="flex justify-end mt-6">
         <button
           onClick={exportToExcel}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-green-500 gotham text-white px-4 py-2 rounded hover:bg-green-600"
         >
           Download Semua ke Excel
         </button>

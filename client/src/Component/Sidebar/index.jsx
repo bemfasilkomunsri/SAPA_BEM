@@ -1,6 +1,6 @@
 // src/Component/Sidebar/index.jsx
 import React, { createContext, useContext } from 'react';
-import logo from '../../assets/Logo/Logo-BEM.png';
+// import logo from '../../assets/Logo/Logo-BEM.png';
 import { ChevronFirst, ChevronLast } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -12,19 +12,19 @@ export const Sidebar = ({ children, expanded, setExpanded }) => {
     <aside className="h-full w-full"> {/* ganti h-screen → h-full */}
       <nav className="h-full flex flex-col bg-white shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
-          <img 
+          {/* <img 
             src={logo} 
             alt="Logo BEM KM FASILKOM" 
             className={`overflow-hidden transition-all ${expanded ? 'w-18' : 'w-0'}`}
-          />
-          {expanded && (
+          /> */}
+          {/* {expanded && (
             <h2 className="text-red-950 text-lg font-medium ml-2 px-2 transition-all">
               BEM KM FASILKOM
             </h2>
-          )}
+          )} */}
           <button 
             onClick={() => setExpanded(curr => !curr)}
-            className="p-3 ml-3 rounded-lg bg-gray-50! hover:bg-gray-100! text-red-950!"
+            className="p-3 ml-3 rounded-lg bg-gray-50! hover:bg-gray-100! cursor-pointer text-red-950!"
           >
             {expanded ? <ChevronFirst size={20} /> : <ChevronLast size={20} />}
           </button>
@@ -53,16 +53,16 @@ export const SidebarItem = ({ icon, text, active, alert, to }) => {
         `}
       >
         {icon}
-        <span className={`overflow-hidden transition-all ${expanded ? 'w-52 ml-3' : 'w-0'}`}>
+        <span className={`overflow-hidden gotham transition-all ${expanded ? 'w-52 ml-3' : 'w-0'}`}>
           {text}
         </span>
         {alert && (
-          <div className={`absolute right-2 w-2 h-2 rounded bg-red-950 ${expanded ? '' : 'top-2'}`} />
+          <div className={`absolute gotham right-2 w-2 h-2 rounded bg-red-950 ${expanded ? '' : 'top-2'}`} />
         )}
         {!expanded && (
           <div
             className={`
-              absolute left-full rounded-md px-2 py-1 ml-6
+              absolute left-full gotham rounded-md px-2 py-1 ml-6
               bg-red-100 text-red-800 text-sm
               invisible opacity-20 -translate-x-3 transition-all
               group-hover:visible group-hover:opacity-100 group-hover:translate-x-0

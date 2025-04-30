@@ -72,7 +72,7 @@ const PengajuanSeminarList = () => {
 
   return (
     <div className="p-6 pt-28">
-      <h1 className="text-2xl font-bold mb-4">Laporan Pengajuan Seminar</h1>
+      <h1 className="text-2xl gotham text-black font-bold mb-4">Laporan Pengajuan Seminar</h1>
 
       {/* Search dan Export */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -81,11 +81,11 @@ const PengajuanSeminarList = () => {
           placeholder="Cari berdasarkan jurusan, judul seminar, atau deskripsi..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border p-2 rounded w-full md:w-1/2"
+          className="border p-2 gotham rounded w-full md:w-1/2"
         />
         <button
           onClick={exportToExcel}
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded w-full md:w-auto"
+          className="bg-green-500 gotham hover:bg-green-600 text-white px-4 py-2 rounded w-full md:w-auto"
         >
           Download Semua ke Excel
         </button>
@@ -94,31 +94,31 @@ const PengajuanSeminarList = () => {
       {/* Loading Spinner */}
       {loading ? (
         <div className="flex justify-center py-10">
-          <div className="animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
+          <div className="animate-spin border-t-4 border-blue-500 gotham rounded-full w-16 h-16"></div>
         </div>
       ) : (
         <table className="min-w-full bg-white shadow rounded-lg overflow-hidden mb-4">
           <thead>
             <tr className="bg-gray-100 border-b border-gray-200">
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">#</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Jurusan</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Judul Seminar</th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider max-w-xs">Deskripsi Seminar</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">#</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Jurusan</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider">Judul Seminar</th>
+              <th className="px-5 py-3 text-left text-xs font-semibold gotham text-gray-700 uppercase tracking-wider max-w-xs">Deskripsi Seminar</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {currentItems.map((item, idx) => (
               <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {indexOfFirstItem + idx + 1}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Jurusan}
                 </td>
-                <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-5 py-4 gotham whitespace-nowrap text-sm text-gray-900">
                   {item.Judul_Seminar}
                 </td>
-                <td className="px-5 py-4 text-sm text-gray-900 max-w-xs whitespace-normal break-words">
+                <td className="px-5 py-4 gotham text-sm text-gray-900 max-w-xs whitespace-normal break-words">
                   {item.Deskripsi_Seminar}
                 </td>
               </tr>
@@ -126,7 +126,7 @@ const PengajuanSeminarList = () => {
 
             {currentItems.length === 0 && (
               <tr>
-                <td colSpan="4" className="px-5 py-6 text-center text-sm text-gray-500">
+                <td colSpan="4" className="px-5 py-6 gotham text-center text-sm text-gray-500">
                   Tidak ada laporan ditemukan.
                 </td>
               </tr>
@@ -141,19 +141,19 @@ const PengajuanSeminarList = () => {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded gotham ${
             currentPage === 1 ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
           Sebelumnya
         </button>
-        <span>
+        <span className="gotham">
           Halaman {currentPage} dari {totalPages}
         </span>
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded gotham ${
             currentPage === totalPages ? "bg-gray-300" : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >

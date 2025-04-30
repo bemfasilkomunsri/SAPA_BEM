@@ -45,10 +45,10 @@ const Admin = () => {
       className={`w-full max-w-sm rounded-2xl p-8 ${color} shadow-md cursor-pointer transition-transform duration-300 hover:scale-105`}
       onClick={() => navigate(link)}
     >
-      <h2 className={`text-xl font-bold ${textColor} mb-2`}>{title}</h2>
-      <p className="text-2xl font-bold text-[#4a0000]">{count} Data</p>
+      <h2 className={`text-xl gotham font-bold ${textColor} mb-2`}>{title}</h2>
+      <p className="text-2xl gotham font-medium text-[#4a0000]">{count} Data</p>
       <button
-        className={`mt-4 px-4 py-2 rounded-md cursor-pointer text-white font-medium ${buttonColor}`}
+        className={`mt-8 px-4 py-2 rounded-md cursor-pointer text-white gotham font-medium ${buttonColor}`}
       >
         Lihat Detail
       </button>
@@ -58,12 +58,12 @@ const Admin = () => {
 
   return (
     <div className="px-6 sm:px-12 lg:px-32 py-8 bg-white min-h-screen pt-20">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6 admin-dashboard">ADMIN DASHBOARD</h1>
+      <h1 className="text-3xl gotham font-bold text-gray-800 mb-6 admin-dashboard">ADMIN DASHBOARD</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <Card
         title="Kinerja Dosen"
         count={data.kinerja}
-        color="bg-[#FFF4D6]"
+        color="bg-[#FBBF6A]/25"
         textColor="text-[#F4B000]"
         buttonColor="bg-[#F4B000]"
         link="/admin/kinerja-dosen"
@@ -71,7 +71,7 @@ const Admin = () => {
       <Card
         title="Pengajuan Seminar"
         count={data.seminar}
-        color="bg-[#FCE8DA]"
+        color="bg-[#DC7F5D]/25"
         textColor="text-[#DC7F5D]"
         buttonColor="bg-[#DC7F5D]"
         link="/admin/pengajuan-seminar"
@@ -79,7 +79,7 @@ const Admin = () => {
       <Card
         title="Kerusakan Fasilitas"
         count={data.fasilitas}
-        color="bg-[#FFF2CD]"
+        color="bg-[#FBBF6A]/25"
         textColor="text-[#EBC75C]"
         buttonColor="bg-[#EBC75C]"
         link="/admin/kerusakan-fasilitas"
@@ -87,7 +87,7 @@ const Admin = () => {
       <Card
         title="Kebijakan Kampus"
         count={data.kebijakan}
-        color="bg-[#FCE8DA]"
+        color="bg-[#DC7F5D]/25"
         textColor="text-[#DC7F5D]"
         buttonColor="bg-[#DC7F5D]"
         link="/admin/kebijakan-kampus"
@@ -95,7 +95,7 @@ const Admin = () => {
       <Card
         title="Ormawa"
         count={data.ormawa}
-        color="bg-[#FFF4D6]"
+        color="bg-[#FBBF6A]/25"
         textColor="text-[#F4B000]"
         buttonColor="bg-[#F4B000]"
         link="/admin/ormawa"

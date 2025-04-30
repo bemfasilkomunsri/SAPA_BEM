@@ -57,7 +57,7 @@ const Admin = () => {
   
 
   return (
-    <div className="px-6 sm:px-12 lg:px-32 py-8 bg-white min-h-screen pt-20">
+    <div className="px-6 sm:px-12 lg:px-32 py-8 bg-white min-h-screen pt-20 m--20">
       <h1 className="text-3xl gotham font-bold text-gray-800 mb-6 admin-dashboard">ADMIN DASHBOARD</h1>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <Card

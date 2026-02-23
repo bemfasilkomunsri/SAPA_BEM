@@ -15,6 +15,9 @@ import AdminOrmawa from "./Pages/AdminOrmawa";
 import AdminKerusakanFasilitas from "./Pages/AdminKerusakanFasilitas";
 import AdminPengajuanSeminar from "./Pages/AdminPengajuanSeminar"
 import Login from "../src/Component/Login";
+import NotFoundPage from "./Pages/NotFoundPage";
+
+
 
 const App = () => {
   return (
@@ -34,6 +37,9 @@ const App = () => {
         <Route path="/admin/kerusakan-fasilitas" element={<AdminKerusakanFasilitas />} />
         <Route path="/admin/ormawa" element={<AdminOrmawa />} />
         <Route path="/admin/pengajuan-seminar" element={<AdminPengajuanSeminar />} />
+
+        {/* route not found */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

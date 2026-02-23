@@ -1,14 +1,16 @@
-const { Sequelize } = require ("sequelize");
-const db = require ("../config/db.js");
+const { Sequelize } = require("sequelize");
+const db = require("../config/db.js");
 
 const { DataTypes } = Sequelize;
 
-const Users = db.define('users', {
+const Users = db.define("users", {
+
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
+
     username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -16,15 +18,17 @@ const Users = db.define('users', {
             notEmpty: true
         }
     },
-    email: {  
+
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,  
+        unique: true,
         validate: {
-            isEmail: true, 
+            isEmail: true,
             notEmpty: true
         }
     },
+
     password: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,9 +36,12 @@ const Users = db.define('users', {
             notEmpty: true
         }
     }
+
 }, {
+
     freezeTableName: true,
-    timestamps: false // karena tidak ada createdAt dan updatedAt
+    timestamps: false
+
 });
 
 module.exports = Users;

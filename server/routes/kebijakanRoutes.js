@@ -3,6 +3,7 @@ const router = express.Router();
 const kebijakanController = require("../controllers/kebijakanController");
 const upload = require("../config/multerConfig");
 
+
 // GET semua laporan kebijakan kampus
 router.get("/", kebijakanController.getKebijakan);
 

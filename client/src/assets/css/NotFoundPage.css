@@ -1,0 +1,118 @@
+.nf-container {
+  position: fixed;
+
+  /* full layar tanpa ubah body */
+  inset: 0; /* shorthand untuk top:0 left:0 right:0 bottom:0 */
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+
+  font-family: 'Segoe UI', sans-serif;
+
+  z-index: 9999; /* supaya di atas semua */
+}
+
+/* animated background */
+.nf-animated-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* circles */
+.nf-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  animation: nf-float 20s infinite;
+}
+
+.nf-circle:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  left: 10%;
+  top: 20%;
+}
+
+.nf-circle:nth-child(2) {
+  width: 120px;
+  height: 120px;
+  right: 15%;
+  top: 40%;
+}
+
+.nf-circle:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  left: 20%;
+  bottom: 30%;
+}
+
+.nf-circle:nth-child(4) {
+  width: 100px;
+  height: 100px;
+  right: 25%;
+  bottom: 20%;
+}
+
+.nf-circle:nth-child(5) {
+  width: 90px;
+  height: 90px;
+  left: 50%;
+  top: 10%;
+}
+
+@keyframes nf-float {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+}
+
+/* content */
+.nf-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+/* 404 text */
+.nf-title {
+  font-size: 120px;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(255,255,255,0.6);
+}
+
+/* subtitle */
+.nf-subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+/* button */
+.nf-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: white;
+  color: #667eea;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nf-btn:hover {
+  transform: translateY(-3px);
+  background: #f0f0f0;
+}

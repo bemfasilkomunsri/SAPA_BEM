@@ -26,8 +26,8 @@ export const AdminNavbar = () => {
               <div className="flex items-center transition-all duration-300 ease-in-out">
                 <img src={logo} className=" w-14 md:w-20" />
                   <div className="self-center ml-1 md:ml-4">
-                    <h1 className="md:text-2xl text-md cinzel text-[#bb0001]">Admin Gaspol</h1>
-                    <p className="cinzelbae md:text-xl text-sm text-[#bb0001]">BEM KM FASILKOM UNSRI</p>
+                    <h1 className="md:text-2xl text-md cinzel text-[#bb0001]">Admin SAPA</h1>
+                    <p className="cinzelbae md:text-xl text-sm text-[#bb0001]">BEM FASILKOM UNSRI</p>
                   </div>
               </div>
 

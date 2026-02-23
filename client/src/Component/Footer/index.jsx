@@ -11,8 +11,8 @@ const Footer = () => {
             <img src={logo} alt="Logo" className={styles.footerLogoImage} />
             <div className={styles.footerLogoText}>
               <span className={styles.decorativeBold}>A</span>
-              <span className={styles.regular}>RTHA</span>{" "}
-              <span className={styles.regular}>DARM</span>
+              <span className={styles.regular}>Rka</span>{" "}
+              <span className={styles.regular}>Satyawir</span>
               <span className={styles.decorativeBold}>A</span>
               <br />
               BEM KM FASILKOM UNSRI
@@ -30,18 +30,43 @@ const Footer = () => {
         <div className={styles.footerContact}>
           <h3>Contact Us</h3>
           <div className="flex-col flex">
-            <a href="https://www.linkedin.com/company/bemkmfasilkomunsri/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Linkedin: @bemkmilkomunsri</a>
+            <a
+              href="https://www.linkedin.com/company/bemkmfasilkomunsri/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Linkedin: @bemkmilkomunsri
+            </a>
             <a href="">Email: bemfasilkomunsri@gmail.com</a>
-            <a href="https://www.instagram.com/bemilkomunsri" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.instagram.com/bemilkomunsri"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instagram: @bemilkomunsri
             </a>
-            <a href="https://x.com/bemilkomunsri" target="_blank" rel="noopener noreferrer">X: @bemilkomunsri</a>
-            <a href="https://www.facebook.com/bemilkomunsri?_rdc=2&_rdr#" target="_blank" rel="noopener noreferrer">Facebook: bemilkomunsri</a>
+            <a
+              href="https://x.com/bemilkomunsri"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              X: @bemilkomunsri
+            </a>
+            <a
+              href="https://www.facebook.com/bemilkomunsri?_rdc=2&_rdr#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook: bemilkomunsri
+            </a>
           </div>
         </div>
       </div>
       <div className={styles.footerBottom}>
-        <p>&copy; BEM KM FASILKOM UNSRI 2025 | Kabinet Artha Darma</p>
+        <p className={styles.footerCredit}>
+          Website developed by Departemen Riset & PTI — Kabinet Arka Satyawira
+        </p>
+        <p>&copy; BEM FASILKOM UNSRI 2026 | Kabinet Arka Satyawira</p>
       </div>
     </footer>
   );

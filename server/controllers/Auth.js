@@ -1,69 +1,146 @@
-const User = require ("../models/UserModel.js");
-const bcrypt = require ("bcryptjs");
+const User = require("../models/UserModel.js");
+const bcrypt = require("bcryptjs");
 
-// Login
+
 const Login = async (req, res) => {
+
+    console.log("LOGIN HIT");
+
     try {
-        // Find user by username
+
+        console.log("BODY:", req.body);
+
         const user = await User.findOne({
             where: {
                 username: req.body.username
-                // email: req.body.email
             }
         });
-        // If user not found
-        if (!user) return res.status(404).json({ msg: "Incorrect username or password" });
 
-        // Verify password using bcrypt
-        const match = await bcrypt.compare(req.body.password, user.password);
-        if (!match) return res.status(400).json({ msg: "Wrong password" });
+        console.log("USER FOUND:", user);
 
-        // Store user id in session
-        req.session.userId = user.id;
-        console.log("Session created:", req.session); // Debugging output
+        if (!user) {
 
-        // Send response with user details (no role field as per your DB schema)
-        const { id, username, email } = user;
-        res.status(200).json({ id, username, email });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Internal server error" });
-    }
-}
+            console.log("USER TIDAK DITEMUKAN");
 
-// Get User (Logged-in user details)
-const Me = async (req, res) => {
-    try {
-        if (!req.session.userId) {
-            return res.status(401).json({ msg: "Please login to your account!" });
+            return res.status(404).json({
+                msg: "User tidak ditemukan"
+            });
         }
 
-        // Find the logged-in user by ID (stored in session)
+        const match = await bcrypt.compare(
+            req.body.password,
+            user.password
+        );
+
+        console.log("PASSWORD MATCH:", match);
+
+        if (!match) {
+
+            console.log("PASSWORD SALAH");
+
+            return res.status(400).json({
+                msg: "Password salah"
+            });
+        }
+
+        req.session.userId = user.id;
+
+        console.log("SESSION CREATED:", req.session);
+
+        res.json({
+            msg: "Login berhasil",
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email
+            }
+        });
+
+    } catch (error) {
+
+        console.log("ERROR LOGIN:");
+        console.log(error);
+
+        res.status(500).json({
+            msg: "Server error",
+            error: error.message
+        });
+
+    }
+
+};
+
+
+
+
+// GET LOGGED USER
+const Me = async (req, res) => {
+
+    try {
+
+        if (!req.session.userId) {
+
+            return res.status(401).json({
+                msg: "Silakan login dulu"
+            });
+
+        }
+
         const user = await User.findOne({
-            attributes: ['id', 'username', 'email'], // No role field
+
+            attributes: ["id", "username", "email"],
+
             where: {
                 id: req.session.userId
             }
+
         });
 
-        // If user not found
-        if (!user) return res.status(404).json({ msg: "User not found" });
+        if (!user) {
 
-        // Send user details
+            return res.status(404).json({
+                msg: "User tidak ditemukan"
+            });
+
+        }
+
         res.status(200).json(user);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Internal server error" });
-    }
-}
 
-// Logout
+    }
+
+    catch (error) {
+
+        res.status(500).json({
+            msg: "Internal server error"
+        });
+
+    }
+
+};
+
+
+
+// LOGOUT
 const logOut = (req, res) => {
+
     req.session.destroy((err) => {
-        if (err) return res.status(400).json({ msg: "Cannot log out" });
-        res.status(200).json({ msg: "You are logged out" });
+
+        if (err) {
+
+            return res.status(400).json({
+                msg: "Tidak bisa logout"
+            });
+
+        }
+
+        res.status(200).json({
+            msg: "Logout berhasil"
+        });
+
     });
-}
+
+};
+
 
 module.exports = {
     Login,

@@ -42,6 +42,23 @@
   font-family: "Cinzel", sans-serif;
 }
 
+.dropdown-btn {
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+  color: black;
+}
+
+/* hover biasa */
+.dropdown-btn:hover {
+  color: #8e8f8e; /* accent color */
+}
+
+/* active / saat klik atau dropdown terbuka */
+.dropdown-btn.active {
+  color: #8e8f8e; /* teks jadi putih */
+}
+
+
 /* Media Query untuk layar kecil */
 @media (max-width: 660px) {
   .navbar {

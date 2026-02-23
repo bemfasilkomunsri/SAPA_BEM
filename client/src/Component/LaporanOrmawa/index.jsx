@@ -14,7 +14,9 @@ function LaporanOrmawa() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/ormawa`)
+    fetch(`${API_URL}/ormawa`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -38,6 +40,7 @@ function LaporanOrmawa() {
 
     fetch(`${API_URL}/ormawa`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

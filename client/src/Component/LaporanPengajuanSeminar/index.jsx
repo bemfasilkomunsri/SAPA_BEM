@@ -15,7 +15,9 @@ function LaporanPengajuanSeminar() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/pengajuan_seminar`)
+    fetch(`${API_URL}/pengajuan_seminar`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -41,6 +43,7 @@ function LaporanPengajuanSeminar() {
     // Kirim data pengajuan seminar ke API
     fetch(`${API_URL}/pengajuan_seminar`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

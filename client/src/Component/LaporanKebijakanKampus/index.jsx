@@ -16,7 +16,9 @@ function LaporanKebijakanKampus() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/kebijakan_kampus`)
+    fetch(`${API_URL}/kebijakan_kampus`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -58,6 +60,7 @@ function LaporanKebijakanKampus() {
 
     fetch(`${API_URL}/kebijakan_kampus`, {
       method: "POST",
+      credentials: "include",
       body: submissionData,
     })
       .then((res) => res.json())

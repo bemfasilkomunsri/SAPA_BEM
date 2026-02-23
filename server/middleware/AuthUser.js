@@ -1,23 +1,84 @@
-// Middleware for checking if the logged-in user is an admin
-const adminOnly = (req, res, next) => {
-    // Check if the logged-in user's email matches the admin's email (replace with your actual check)
-    if (req.user.email !== 'admin@example.com') {  // Replace with actual admin email or condition
-      return res.status(403).json({ msg: 'Access denied, not an admin' });
-    }
-    next();
-};
-  
+const User = require("../models/UserModel.js");
 
-// Fungsi middleware untuk memverifikasi user
-const verifyUser = (req, res, next) => {
-    // Logika untuk memverifikasi user
-    if (req.user) {
-        return next();
+// VERIFY USER LOGIN
+const verifyUser = async (req, res, next) => {
+
+    console.log("===== VERIFY USER =====");
+    console.log("Session:", req.session);
+    console.log("Session userId:", req.session.userId);
+    console.log("=======================");
+
+    if (!req.session.userId) {
+
+        console.log("SESSION TIDAK ADA USERID");
+
+        return res.status(401).json({
+            msg: "Silakan login dulu"
+        });
+
     }
-    return res.status(401).json({ msg: "Unauthorized" });
+
+    const user = await User.findOne({
+        where: {
+            id: req.session.userId
+        }
+    });
+
+    if (!user) {
+
+        console.log("USER TIDAK DITEMUKAN DI DATABASE");
+
+        return res.status(404).json({
+            msg: "User tidak ditemukan"
+        });
+
+    }
+
+    console.log("USER VERIFIED:", user.username);
+
+    req.userId = user.id;
+    req.email = user.email;
+
+    next();
+
 };
+
+
+// ADMIN ONLY
+const adminOnly = async (req, res, next) => {
+
+    console.log("===== ADMIN CHECK =====");
+    console.log("Session:", req.session);
+    console.log("=======================");
+
+    const user = await User.findOne({
+        where: {
+            id: req.session.userId
+        }
+    });
+
+    if (!user) {
+
+        return res.status(404).json({
+            msg: "User tidak ditemukan"
+        });
+
+    }
+
+    if (user.email !== "admin@gmail.com") {
+
+        return res.status(403).json({
+            msg: "Access denied"
+        });
+
+    }
+
+    next();
+
+};
+
 
 module.exports = {
-    adminOnly,
-    verifyUser
+    verifyUser,
+    adminOnly
 };

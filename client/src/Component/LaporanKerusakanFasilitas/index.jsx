@@ -15,7 +15,9 @@ function LaporanKerusakanFasilitas() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API_URL}/kerusakan_fasilitas`)
+    fetch(`${API_URL}/kerusakan_fasilitas`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setLaporan(data))
       .catch((err) => console.error(err));
@@ -31,7 +33,8 @@ function LaporanKerusakanFasilitas() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.size > 3 * 1024 * 1024) { // 3MB
+    if (selectedFile && selectedFile.size > 3 * 1024 * 1024) {
+      // 3MB
       setErrorMessage("Ukuran file maksimal 3MB.");
       setFile(null);
     } else {
@@ -49,13 +52,17 @@ function LaporanKerusakanFasilitas() {
     }
 
     const submissionData = new FormData();
-    submissionData.append("fasilitas_yang_rusak", formData.fasilitas_yang_rusak);
+    submissionData.append(
+      "fasilitas_yang_rusak",
+      formData.fasilitas_yang_rusak,
+    );
     submissionData.append("deskripsi_kerusakan", formData.deskripsi_kerusakan);
     submissionData.append("proses", formData.proses);
     if (file) submissionData.append("berkas", file);
 
     fetch(`${API_URL}/kerusakan_fasilitas`, {
       method: "POST",
+      credentials: "include",
       body: submissionData,
     })
       .then((res) => res.json())
@@ -89,12 +96,27 @@ function LaporanKerusakanFasilitas() {
       style={{ padding: "100px 20px", textAlign: "center" }}
       className="min-h-screen bg-[url('/src/assets/Background/DetailForm.svg')] bg-cover bg-center bg-no-repeat"
     >
-      <h1 style={{ fontSize: "32px", fontWeight: "600", fontFamily: "Gotham, sans-serif", color: "#000000", marginBottom: "16px" }}>
+      <h1
+        style={{
+          fontSize: "32px",
+          fontWeight: "600",
+          fontFamily: "Gotham, sans-serif",
+          color: "#000000",
+          marginBottom: "16px",
+        }}
+      >
         Laporan Kerusakan Fasilitas
       </h1>
-      <p style={{ maxWidth: "600px", margin: "0 auto 40px", color: "#3E3E3E", fontFamily: "Gotham, sans-serif" }}>
-        Laporkan segala bentuk kerusakan fasilitas yang Anda temui di lingkungan kampus. 
-        Sertakan bukti agar laporan dapat segera ditindaklanjuti.
+      <p
+        style={{
+          maxWidth: "600px",
+          margin: "0 auto 40px",
+          color: "#3E3E3E",
+          fontFamily: "Gotham, sans-serif",
+        }}
+      >
+        Laporkan segala bentuk kerusakan fasilitas yang Anda temui di lingkungan
+        kampus. Sertakan bukti agar laporan dapat segera ditindaklanjuti.
       </p>
 
       <form
@@ -108,7 +130,7 @@ function LaporanKerusakanFasilitas() {
           textAlign: "left",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           backgroundColor: "#fff",
-          fontFamily: "Gotham, sans-serif"
+          fontFamily: "Gotham, sans-serif",
         }}
       >
         <div style={{ marginBottom: "20px" }}>
@@ -154,11 +176,7 @@ function LaporanKerusakanFasilitas() {
 
         <div style={{ display: "none" }}>
           <label>Proses</label>
-          <select
-            name="proses"
-            value={formData.proses}
-            onChange={handleChange}
-          >
+          <select name="proses" value={formData.proses} onChange={handleChange}>
             <option value={0}>Pending</option>
             <option value={1}>Diproses</option>
             <option value={2}>Selesai</option>
@@ -179,16 +197,10 @@ function LaporanKerusakanFasilitas() {
           Kirim Laporan
         </button>
 
-        {errorMessage && (
-          <div className="alert error">
-              {errorMessage}
-          </div>
-        )}
+        {errorMessage && <div className="alert error">{errorMessage}</div>}
 
         {successMessage && (
-          <div className="alert success">
-              {successMessage}
-          </div>
+          <div className="alert success">{successMessage}</div>
         )}
       </form>
     </div>

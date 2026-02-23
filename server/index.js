@@ -1,73 +1,71 @@
-// Memuat konfigurasi environment dari .env
 require("dotenv").config();
 
-const session = require("express-session");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const path = require("path");
 
-// Import package dan file konfigurasi
 const express = require("express");
 const cors = require("cors");
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-// Import koneksi database dan routes
 const db = require("./config/db");
-const kebijakanRoutes = require("./routes/kebijakanRoutes");
-const seminarRoutes = require("./routes/seminarRoutes");
-const fasilitasRoutes = require("./routes/fasilitasRoutes");
-const dosenRoutes = require("./routes/dosenRoutes");
-const ormawaRoutes = require("./routes/ormawaRoutes");
-const UserRoute = require ("./routes/UserRoute.js");
-const AuthRoute = require ("./routes/AuthRoute.js");
+
+const UserRoute = require("./routes/UserRoute.js");
+const AuthRoute = require("./routes/AuthRoute.js");
+const fasilitasRoute = require("./routes/fasilitasRoutes.js");
+const kebijakanRoute = require("./routes/kebijakanRoutes.js");
+const ormawaRoute = require("./routes/ormawaRoutes.js");
+const seminarRoute = require("./routes/seminarRoutes.js");
+const dosenRoute = require("./routes/dosenRoutes.js");
 
 const app = express();
 
-// Konfigurasi store session di DB
+app.set("trust proxy", 1);
+
 const store = new SequelizeStore({
-  db: db,
-  tableName: 'sessions'
+    db: db,
+    tableName: "sessions",
 });
 
-// (async()=>{
-//     await db.sync();
+store.sync();
 
-// })();
-
-// Setup express-session
-app.use(session({
-  secret: process.env.SESS_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  store: store,
-  cookie: {
-      secure: 'auto'
-  }
-}));
-
-// Middleware
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:5173"],
-  credentials: true
+    origin: "http://localhost:5173",
+    credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Menyajikan file statis dari folder uploads
-app.use("/uploads", express.static("uploads"));
+app.use(session({
+    secret: "super_secret",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
 
-// Menyambungkan routes ke aplikasi
-app.use(UserRoute);
-app.use('/api', AuthRoute);
-app.use("/kebijakan_kampus", kebijakanRoutes);
-app.use("/pengajuan_seminar", seminarRoutes);
-app.use("/kerusakan_fasilitas", fasilitasRoutes);
-app.use("/kinerja_dosen", dosenRoutes);
-app.use("/ormawa", ormawaRoutes);
+// STATIC uploads
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+app.use("/api", AuthRoute);
+app.use("/api", UserRoute);
+app.use("/kerusakan_fasilitas", fasilitasRoute);
+app.use("/kebijakan_kampus", kebijakanRoute);
+app.use("/ormawa", ormawaRoute);
+app.use("/pengajuan_seminar", seminarRoute);
+app.use("/kinerja_dosen", dosenRoute);
 
-// store.sync();
+app.get("/", (req, res) => {
+    res.json({ msg: "API RUNNING" });
+});
 
-// Menjalankan server
-const PORT = process.env.APP_PORT || 5000;
+const PORT = 3001;
+
 app.listen(PORT, () => {
-  console.log(`Server up and running on port ${PORT}`);
+    console.log("Server running on http://localhost:" + PORT);
 });

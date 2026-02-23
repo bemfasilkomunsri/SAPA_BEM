@@ -18,7 +18,7 @@ const Home = () => {
           }
         });
       },
-      { threshold: 0.3 } // Elemen terlihat jika 30% masuk ke viewport
+      { threshold: 0.3 }, // Elemen terlihat jika 30% masuk ke viewport
     );
 
     // Observasi elemen teks dan gambar
@@ -37,18 +37,20 @@ const Home = () => {
       <section className="lg:pt-32 pt-72 home flex items-center justify-center min-h-screen">
         <div className="lg:flex justify-center self-center">
           <div ref={titleRef} className="lg:ml-20 fade-up mx-10 self-center">
-            <h1 className="text gotham lg:text-6xl text-5xl font-bold">
-              Sampaikan Pelaporanmu
+            <h1 className="text gotham lg:text-6xl text-4xl font-bold">
+              Sampaikan Aspirasi
             </h1>
-            <h1 className="text gotham mt-2 lg:text-6xl text-5xl font-bold">
-              Bersama <span className="gaspol">GASPOL</span>
+            <h1 className="text gotham mt-2 lg:text-6xl text-4xl font-bold">
+              Bersama <span className="gaspol">SAPA</span>
             </h1>
             <p className=" gotham max-w-[40rem] md:text-lg text-md mt-10">
-              Jangan biarkan keluhan dan aspirasi Anda hanya menjadi suara tanpa
-              arah laporkan melalui GASPOL, sebuah forum resmi yang memastikan
-              setiap masukan didengar dan ditindaklanjuti demi terciptanya
-              lingkungan yang lebih baik bagi Fasilkom UNSRI.
-            </p>
+              Suatu wadah aspirasi bagi mahasiswa Fasilkom untuk bersuara
+              terkait saran maupun keluh kesah yang dihadapi selama menimba ilmu
+              di Fasilkom, dengan tahap awal yang akan lebih terjun ke seluruh
+              bagian dari mahasiswa Fasilkom dan akan dikolektifkan menjadi
+              berbagai data yang valid untuk dibahas bersama pimpinan Fasilkom
+                        
+            </p>
             <Link
               to="about"
               smooth={true}

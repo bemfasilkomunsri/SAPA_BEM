@@ -3,10 +3,17 @@ const router = express.Router();
 const fasilitasController = require("../controllers/fasilitasController");
 const upload = require("../config/multerConfig");
 
-// GET semua laporan kerusakan fasilitas
+
+// GET semua laporan
 router.get("/", fasilitasController.getFasilitas);
 
-// POST laporan kerusakan dengan berkas
-router.post("/", upload.single("berkas"), fasilitasController.postFasilitas);
+
+// POST laporan + upload file
+router.post(
+  "/",
+  upload.single("berkas"),
+  fasilitasController.postFasilitas
+);
+
 
 module.exports = router;

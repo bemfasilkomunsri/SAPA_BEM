@@ -55,7 +55,7 @@ export default function ReportFormUI() {
   return (
     <Element name="laporan">
       <div
-        className="min-h-screen pt-[12rem] flex flex-col items-center justify-center p-6 bg-[url('/src/assets/Background/Form.svg')] bg-cover bg-center bg-no-repeat"
+        className="min-h-screen pt-[12rem] pb-24 flex flex-col items-center justify-center p-6 bg-[url('/src/assets/Background/Form.svg')] bg-cover bg-center bg-no-repeat"
       >
         <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-30 max-w-7xl">
           {/* Cards section */}
@@ -118,7 +118,7 @@ export default function ReportFormUI() {
             )}
             <button
               onClick={handleReportClick}
-              className="flex font-normal gotham items-center mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 bg-[#4A0000] border border-[#4A0000] text-white hover:bg-[#FFEBBC] hover:text-[#000000] duration-300 rounded-lg text-lg"
+              className="flex font-normal gotham items-center lg:mb-0 mb-40 mx-auto lg:mx-0 cursor-pointer gap-2 px-4 py-2 bg-[#4A0000] border border-[#4A0000] text-white hover:bg-[#FFEBBC] hover:text-[#000000] duration-300 rounded-lg text-lg"
             >
               Lapor sekarang
             </button>

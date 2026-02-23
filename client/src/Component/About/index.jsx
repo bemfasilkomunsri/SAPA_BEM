@@ -18,7 +18,7 @@ const About = () => {
           }
         });
       },
-      { threshold: 0.3 } // Elemen terlihat jika 30% masuk ke viewport
+      { threshold: 0.3 }, // Elemen terlihat jika 30% masuk ke viewport
     );
 
     // Observasi elemen teks dan gambar
@@ -31,31 +31,29 @@ const About = () => {
       if (titleRef.current) observer.unobserve(titleRef.current);
       if (title2Ref.current) observer.unobserve(title2Ref.current);
       if (title3Ref.current) observer.unobserve(title3Ref.current);
-
     };
   }, []);
 
   return (
     <Element name="about">
       <section className="pt-30 about">
-        <div>
-          <h1 ref={titleRef} className="fade-up gotham text-center text text-3xl font-bold about-us">
-            Tentang Kami
-          </h1>
-        </div>
-        <div ref={title2Ref} className="lg:mt-12 fade-up mt-4">
-          <h1 className="text-center gotham text lg:text-4xl text-3xl font-bold">
+        <div></div>
+        <div ref={title2Ref} className="lg:mt-20 fade-up mt-8">
+          <h1 className="text-center gotham text lg:text-5xl mb-12 z-10 text-4xl font-bold">
             Dari Mahasiswa Untuk Kampus
           </h1>
         </div>
+
         <div>
-          <p ref={title3Ref} className="fade-up gotham md:mx-auto mx-4 text-center text-angular lg:text-lg text-lg max-w-[43rem] lg:mt-6 mt-30 font-normal">
-            GASPOL merupakan salah satu Program kerja kolaborasi dari Dinas
-            Kastrad dan Dinas Ristek BEM KM Fasilkom Kabinet Artha Dharma.
-            GASPOL sendiri berfungsi agar mahasiswa dapat lebih mudah dalam
-            melakukan pelaporan seputar kampus Fakultas Ilmu Komputer
-            Universitas Sriwijaya. Semua laporan yang telah dibuat nantinya akan
-            diaudiensikan dengan pihak dekanat.
+          <p
+            ref={title3Ref}
+            className="fade-up gotham md:mx-auto mx-4 text-center text-angular lg:text-xl text-lg max-w-[43rem] lg:mt-6 mt-30 font-normal"
+          >
+            SAPA merupakan hasil kolaborasi dari Departemen Riset PTI dan
+            Departemen Kastrad BEM Fasilkom Kabinet Arka Satyawira. SAPA
+            berfungsi sebagai wadah aspirasi bagi mahasiswa Fasilkom untuk
+            menyampaikan saran maupun keluh kesah yang dihadapi selama menimba
+            ilmu di Fakultas Ilmu Komputer Universitas Sriwijaya.
           </p>
         </div>
         <div className="mt-12">

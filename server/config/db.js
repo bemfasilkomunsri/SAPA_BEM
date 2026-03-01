@@ -1,41 +1,30 @@
-// const mysql = require("mysql");
-const Sequelize = require ("sequelize");
+const Sequelize = require("sequelize");
 require("dotenv").config();
 
-// Konfigurasi koneksi MySQL dengan Sequelize via .env
 const db = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASS,
   {
-      host: process.env.DB_HOST,
-      dialect: "mysql"
+    host: process.env.DB_HOST,
+    dialect: "mysql",
+    logging: false,
+    dialectOptions: {
+      connectTimeout: 60000
+    }
   }
 );
 
-db.authenticate()
-  .then(() => {
-    console.log("Berhasil terkoneksi ke MySQL");
-  })
-  .catch((err) => {
-    console.error("Gagal terkoneksi ke MySQL:", err);
-  });
+async function connectDB() {
+  try {
+    await db.authenticate();
+    console.log("✅ Berhasil terkoneksi ke MySQL");
+  } catch (error) {
+    console.error("❌ Gagal terkoneksi ke MySQL:");
+    console.error(error.message);
+  }
+}
 
-
-// Konfigurasi koneksi Mysql Native
-// const db = mysql.createConnection({
-//   host: process.env.DB_HOST,
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASS,
-//   database: process.env.DB_NAME,
-// });
-
-// db.connect((err) => {
-//   if (err) {
-//     console.error("Gagal terkoneksi ke MySQL:", err);
-//   } else {
-//     console.log("Berhasil terkoneksi ke MySQL");
-//   }
-// });
+connectDB();
 
 module.exports = db;

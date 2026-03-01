@@ -29,7 +29,10 @@ const store = new SequelizeStore({
 store.sync();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://sapa.bemfasilkomunsri.org"
+    ],
     credentials: true
 }));
 
@@ -37,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-    secret: "super_secret",
+    secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: false,
     store: store,
@@ -64,8 +67,8 @@ app.get("/", (req, res) => {
     res.json({ msg: "API RUNNING" });
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log("Server running on http://localhost:" + PORT);
+    console.log("Server running on port " + PORT);
 });
